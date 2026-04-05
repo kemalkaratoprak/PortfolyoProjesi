@@ -218,4 +218,4 @@ C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\bin\Debug\net9.0\runtimes\win
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\PortfolyoProjesi.csproj.AssemblyReference.cache
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\Portfoly.44E25BB6.Up2Date
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\PortfolyoProjesi.sourcelink.json
-C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\compressed\6229x97q27-5j3ezoook2.gz
+C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\compressed\6229x97q27-2aa7ow0ypk.gz
