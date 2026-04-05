@@ -40,10 +40,14 @@
                     Merhaba! Ben <strong>Kemal Karatoprak</strong>. Geleceği kodlarla inşa etmeye meraklı, ASP.NET Core ve modern web teknolojileri üzerine odaklanmış bir yazılım geliştiriciyim.
                 </p>
                 <p class="text-white-50 mb-4">
-                    Karmaşık problemleri basit ve kullanıcı dostu çözümlere dönüştürmeyi seviyorum. Veri tabanı mimarileri, backend süreçleri ve şık kullanıcı arayüzleri oluşturmak benim için bir tutku. Her projede yeni bir şeyler öğrenmeyi ve sınırlarımı zorlamayı hedefliyorum.
+                    Karmaşık problemleri basit ve kullanıcı dostu çözümlere dönüştürmeyi seviyorum. Veri tabanı mimarileri, backend süreçleri ve şık kullanıcı arayüzleri oluşturmak benim için bir tutku.
                 </p>
-                <div class="d-flex gap-3">
+                <!-- CV İndirme ve İletişim Butonları -->
+                <div class="d-flex gap-3 align-items-center">
                     <a href="#contact" class="btn btn-outline-info">Bana Ulaşın</a>
+                    <a href="~/files/Kemal_Karatoprak_CV.pdf" download="Kemal_Karatoprak_CV.pdf" class="btn btn-link text-info text-decoration-none fw-bold">
+                        <i class="bi bi-file-earmark-pdf-fill"></i> CV İndir (PDF)
+                    </a>
                 </div>
             </div>
         </div>
@@ -55,31 +59,21 @@
     <div class="container px-5">
         <div class="text-center mb-5">
             <h2 class="fw-bolder text-info">Teknik Yetkinlikler</h2>
-            <p class="lead fw-normal text-muted mb-0">Programlama dilleri, frameworkler ve kullandığım araçlar</p>
         </div>
         <div class="row gx-5">
             <div class="col-lg-6 mb-5">
                 <div class="card h-100 bg-dark border-secondary shadow">
                     <div class="card-body p-4">
-                        <h3 class="h5 text-info mb-4 border-bottom border-secondary pb-2"><i class="bi bi-code-slash me-2"></i>Programlama Dilleri</h3>
-                        <ul class="list-unstyled text-white-50">
-                            <li class="mb-3"><span class="text-white fw-bold">Python:</span> İleri Seviye (Pandas, NumPy ve Selenium)</li>
-                            <li class="mb-3"><span class="text-white fw-bold">C#:</span> Orta Seviye (.NET Core ve MVC)</li>
-                            <li class="mb-3"><span class="text-white fw-bold">JavaScript:</span> Orta Seviye</li>
-                            <li><span class="text-white fw-bold">HTML5:</span> Temel Seviye</li>
-                        </ul>
+                        <h3 class="h5 text-info mb-4 border-bottom border-secondary pb-2"><i class="bi bi-code-slash me-2"></i>Diller</h3>
+                        <p class="text-white-50">Python (İleri), C# (Orta), JavaScript, HTML5/CSS3</p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 mb-5">
                 <div class="card h-100 bg-dark border-secondary shadow">
                     <div class="card-body p-4">
-                        <h3 class="h5 text-info mb-4 border-bottom border-secondary pb-2"><i class="bi bi-stack me-2"></i>Frameworkler & Teknolojiler</h3>
-                        <ul class="list-unstyled text-white-50">
-                            <li class="mb-3"><span class="text-white fw-bold">Web:</span> ASP.NET Core MVC</li>
-                            <li class="mb-3"><span class="text-white fw-bold">Frontend:</span> Bootstrap, CSS3</li>
-                            <li><span class="text-white fw-bold">Veri:</span> SQL Server (T-SQL, Ef Core)</li>
-                        </ul>
+                        <h3 class="h5 text-info mb-4 border-bottom border-secondary pb-2"><i class="bi bi-stack me-2"></i>Teknolojiler</h3>
+                        <p class="text-white-50">ASP.NET Core MVC, Entity Framework Core, SQL Server, Bootstrap</p>
                     </div>
                 </div>
             </div>
@@ -95,11 +89,11 @@
             @foreach (var proje in Model)
             {
                 <div class="col-lg-4 mb-5">
-                    <div class="card h-100 shadow-lg border-secondary bg-dark text-white overflow-hidden">
-                        <img class="card-img-top" src="@proje.ImageUrl" alt="@proje.Title" style="height: 200px; object-fit: cover;" />
+                    <div class="card h-100 shadow-lg border-secondary bg-dark text-white">
+                        <img class="card-img-top" src="@proje.ImageUrl" style="height: 200px; object-fit: cover;" />
                         <div class="card-body p-4">
-                            <h5 class="card-title mb-3 fw-bold text-info">@proje.Title</h5>
-                            <p class="card-text mb-0 text-white-50">@proje.Description</p>
+                            <h5 class="card-title text-info">@proje.Title</h5>
+                            <p class="text-white-50 small">@proje.Description</p>
                         </div>
                     </div>
                 </div>
@@ -113,7 +107,6 @@
     <div class="container px-5">
         <div class="bg-secondary rounded-4 py-5 px-4 px-md-5 shadow-lg border border-info">
             <div class="text-center mb-5">
-                <div class="feature bg-info bg-gradient text-dark rounded-3 mb-3 p-2 d-inline-block shadow"><i class="bi bi-envelope"></i></div>
                 <h2 class="fw-bolder text-white">Bana Ulaşın</h2>
                 @if (TempData["MessageSent"] != null)
                 {
@@ -124,24 +117,22 @@
                 <div class="col-lg-8 col-xl-6">
                     <form asp-action="SendMessage" asp-controller="Home" method="post">
                         <div class="form-floating mb-3">
-                            <input class="form-control bg-dark text-white border-secondary" name="Name" id="name" type="text" placeholder="Adınız..." required />
-                            <label for="name" class="text-white-50">Ad Soyad</label>
+                            <input class="form-control bg-dark text-white border-secondary" name="Name" id="name" type="text" placeholder="Ad Soyad" required />
+                            <label for="name">Ad Soyad</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control bg-dark text-white border-secondary" name="Email" id="email" type="email" placeholder="email@ornek.com" required />
-                            <label for="email" class="text-white-50">E-posta Adresi</label>
+                            <input class="form-control bg-dark text-white border-secondary" name="Email" id="email" type="email" placeholder="E-posta" required />
+                            <label for="email">E-posta</label>
                         </div>
                         <div class="form-floating mb-3">
                             <input class="form-control bg-dark text-white border-secondary" name="Subject" id="subject" type="text" placeholder="Konu" required />
-                            <label for="subject" class="text-white-50">Konu</label>
+                            <label for="subject">Konu</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <textarea class="form-control bg-dark text-white border-secondary" name="Message" id="message" style="height: 10rem" placeholder="Mesajınız..." required></textarea>
-                            <label for="message" class="text-white-50">Mesajınız</label>
+                            <textarea class="form-control bg-dark text-white border-secondary" name="Message" id="message" style="height: 10rem" placeholder="Mesaj" required></textarea>
+                            <label for="message">Mesaj</label>
                         </div>
-                        <div class="d-grid">
-                            <button class="btn btn-info btn-lg fw-bold" type="submit">Gönder</button>
-                        </div>
+                        <div class="d-grid"><button class="btn btn-info btn-lg fw-bold" type="submit">Gönder</button></div>
                     </form>
                 </div>
             </div>
