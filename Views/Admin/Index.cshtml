@@ -1,0 +1,67 @@
+@model List<PortfolyoProjesi.Models.Project>
+
+@{
+    ViewData["Title"] = "Admin Paneli";
+}
+
+<div class="container mt-5">
+    <!-- Üst Başlık ve Hızlı Aksiyonlar -->
+    <div class="d-flex justify-content-between align-items-center mb-4 bg-dark p-4 rounded shadow-lg border border-secondary">
+        <div>
+            <h2 class="text-info fw-bold mb-0">🛠️ Proje Yönetim Paneli</h2>
+            <p class="text-white-50 mb-0">Sitenizdeki projeleri buradan kontrol edebilirsiniz.</p>
+        </div>
+        <div class="d-flex gap-2">
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-light btn-sm fw-bold">← Siteye Dön</a>
+            <a asp-controller="Home" asp-action="Create" class="btn btn-success btn-sm fw-bold">+ Yeni Proje Ekle</a>
+            <!-- ÇIKIŞ BUTONU: Güvenliğin son halkası -->
+            <a asp-controller="Admin" asp-action="Logout" class="btn btn-danger btn-sm fw-bold">Oturumu Kapat</a>
+        </div>
+    </div>
+
+    <!-- Proje Tablosu -->
+    <div class="table-responsive shadow-lg rounded">
+        <table class="table table-dark table-hover align-middle border-secondary mb-0">
+            <thead class="table-secondary text-dark">
+                <tr>
+                    <th scope="col" style="width: 80px;">Görsel</th>
+                    <th scope="col">Başlık</th>
+                    <th scope="col">Açıklama Özeti</th>
+                    <th scope="col" class="text-center">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var proje in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="rounded overflow-hidden shadow-sm border border-secondary">
+                                <img src="@proje.ImageUrl" style="width: 60px; height: 60px; object-fit: cover;" alt="@proje.Title" />
+                            </div>
+                        </td>
+                        <td>
+                            <span class="fw-bold text-info">@proje.Title</span>
+                        </td>
+                        <td>
+                            <p class="text-white-50 mb-0" style="max-width: 400px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                @proje.Description
+                            </p>
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group shadow-sm">
+                                <a asp-controller="Home" asp-action="Edit" asp-route-id="@proje.Id" class="btn btn-sm btn-info fw-bold">
+                                    ✏️ Düzenle
+                                </a>
+                                <a asp-controller="Home" asp-action="Delete" asp-route-id="@proje.Id" 
+                                   class="btn btn-sm btn-danger fw-bold" 
+                                   onclick="return confirm('@proje.Title projesini silmek istediğinize emin misiniz?')">
+                                    🗑️ Sil
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

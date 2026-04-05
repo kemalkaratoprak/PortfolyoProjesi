@@ -1,0 +1,192 @@
+﻿@model List<PortfolyoProjesi.Models.Project>
+
+@{
+    ViewData["Title"] = "Yazılım Geliştirici Portfolyosu";
+}
+
+<!-- Hero Section: Daha Koyu ve Şık -->
+<header class="py-5 mb-5" style="background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); border-radius: 20px; border: 1px solid #333;">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center">
+            <div class="col-lg-8">
+                <div class="my-5 text-center text-xl-start">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Geleceği Kodla İnşa Ediyorum</h1>
+                    <p class="lead fw-normal text-white-50 mb-4">ASP.NET Core ve SQL Server ile modern, güvenli ve ölçeklenebilir çözümler.</p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                        <a class="btn btn-info btn-lg px-4 me-sm-3 fw-bold" href="#projects">Projelerimi Gör</a>
+                        <a class="btn btn-outline-light btn-lg px-4" href="#contact">İletişim</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Hakkımda Bölümü (About Section) -->
+<section class="py-5 bg-dark" id="about">
+    <div class="container px-5 my-5">
+        <div class="row gx-5 align-items-center">
+            <!-- Sol Taraf: Fotoğraf Alanı -->
+            <div class="col-lg-5 text-center mb-5 mb-lg-0">
+                <div class="position-relative d-inline-block">
+                    <img class="img-fluid rounded-circle shadow-lg border border-info p-2" 
+                         src="~/img/profil.jpeg" 
+                         alt="Kemal Karatoprak" 
+                         style="width: 280px; height: 280px; object-fit: cover;" />
+                    <div class="position-absolute bottom-0 end-0 bg-info text-dark p-2 rounded-circle shadow">
+                        <span class="fw-bold">🚀👨‍💻</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Sağ Taraf: Biyografi -->
+            <div class="col-lg-7">
+                <h2 class="fw-bolder text-info mb-3">Ben Kimim?</h2>
+                <p class="lead fw-normal text-white mb-4">
+                    Merhaba! Ben <strong>Kemal Karatoprak</strong>. Geleceği kodlarla inşa etmeye meraklı, ASP.NET Core ve modern web teknolojileri üzerine odaklanmış bir yazılım geliştiriciyim.
+                </p>
+                <p class="text-white-50 mb-4">
+                    Karmaşık problemleri basit ve kullanıcı dostu çözümlere dönüştürmeyi seviyorum. Veri tabanı mimarileri, backend süreçleri ve şık kullanıcı arayüzleri oluşturmak benim için bir tutku. Her projede yeni bir şeyler öğrenmeyi ve sınırlarımı zorlamayı hedefliyorum.
+                </p>
+                <div class="d-flex gap-3">
+                    <a href="#contact" class="btn btn-outline-info">Bana Ulaşın</a>
+                    <a href="~/files/Kemal_Karatoprak_CV.pdf" 
+                        download="Kemal_Karatoprak_CV.pdf" 
+                        class="btn btn-sm btn-link text-info text-decoration-none pt-2 fw-bold">
+                        <i class="bi bi-file-earmark-pdf-fill"></i> CV İndir (PDF)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Detaylı Teknik Yetkinlikler Bölümü -->
+<section class="py-5 bg-dark border-bottom border-secondary mb-5">
+    <div class="container px-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bolder text-info">Teknik Yetkinlikler</h2>
+            <p class="lead fw-normal text-muted mb-0">Programlama dilleri, frameworkler ve kullandığım araçlar</p>
+        </div>
+        
+        <div class="row gx-5">
+            <!-- Programlama Dilleri -->
+            <div class="col-lg-6 mb-5">
+                <div class="card h-100 bg-dark border-secondary shadow">
+                    <div class="card-body p-4">
+                        <h3 class="h5 text-info mb-4 border-bottom border-secondary pb-2"><i class="bi bi-code-slash me-2"></i>Programlama Dilleri</h3>
+                        <ul class="list-unstyled text-white-50">
+                            <li class="mb-3">
+                                <span class="text-white fw-bold">Python:</span> İleri Seviye (Pandas, NumPy ve Selenium ile veri işleme ve otomasyon süreçleri)
+                            </li>
+                            <li class="mb-3">
+                                <span class="text-white fw-bold">C#:</span> Orta Seviye (.NET Core ve MVC mimarisi ile backend geliştirme)
+                            </li>
+                            <li class="mb-3">
+                                <span class="text-white fw-bold">JavaScript:</span> Orta Seviye
+                            </li>
+                            <li>
+                                <span class="text-white fw-bold">HTML5:</span> Temel Seviye
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Frameworkler & Teknolojiler -->
+            <div class="col-lg-6 mb-5">
+                <div class="card h-100 bg-dark border-secondary shadow">
+                    <div class="card-body p-4">
+                        <h3 class="h5 text-info mb-4 border-bottom border-secondary pb-2"><i class="bi bi-stack me-2"></i>Frameworkler & Teknolojiler</h3>
+                        <ul class="list-unstyled text-white-50">
+                            <li class="mb-3">
+                                <span class="text-white fw-bold">Web Geliştirme:</span> ASP.NET Core, MVC Mimarisi
+                            </li>
+                            <li class="mb-3">
+                                <span class="text-white fw-bold">Frontend:</span> Bootstrap, CSS3 (Modern ve şık arayüz tasarımları)
+                            </li>
+                            <li>
+                                <span class="text-white fw-bold">Veri Yönetimi:</span> SQL Server (Veri tabanı tasarımı ve yönetimi)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Araçlar & Ortamlar -->
+            <div class="col-lg-12">
+                <div class="card bg-dark border-secondary shadow">
+                    <div class="card-body p-4">
+                        <div class="row text-center">
+                            <div class="col-md-6 border-end border-secondary">
+                                <h4 class="h6 text-info fw-bold mb-3">Araçlar & Versiyon Kontrolü</h4>
+                                <p class="text-white-50 mb-0">Git, GitHub</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="h6 text-info fw-bold mb-3">Geliştirme Ortamları</h4>
+                                <p class="text-white-50 mb-0">VS Code, PyCharm</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<div id="projects" class="container px-4">
+    <h2 class="fw-bolder mb-5 text-center text-info">Öne Çıkan Çalışmalarım</h2>
+    <div class="row gx-4">
+        @foreach (var proje in Model)
+        {
+            <div class="col-lg-4 mb-5">
+                <div class="card h-100 shadow-lg border-secondary bg-dark text-white overflow-hidden">
+                    <img class="card-img-top" src="@proje.ImageUrl" alt="@proje.Title" style="height: 200px; object-fit: cover; filter: brightness(0.8);" />
+                    <div class="card-body p-4">
+                        <div class="badge bg-info text-dark rounded-pill mb-2">Web Geliştirme</div>
+                        <h5 class="card-title mb-3 fw-bold text-info">@proje.Title</h5>
+                        <p class="card-text mb-0 text-white-50" style="font-size: 0.9rem;">@proje.Description</p>
+                    </div>
+                    <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                        <div class="d-flex flex-column gap-2">
+                            <a href="#" class="btn btn-sm btn-outline-info fw-bold w-100">Detayları Gör →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<!-- İletişim Bölümü -->
+<section class="py-5 bg-dark" id="contact">
+    <div class="container px-5">
+        <div class="bg-secondary rounded-4 py-5 px-4 px-md-5 shadow-lg border border-info">
+            <div class="text-center mb-5">
+                <div class="feature bg-info bg-gradient text-dark rounded-3 mb-3 p-2 d-inline-block shadow"><i class="bi bi-envelope"></i></div>
+                <h2 class="fw-bolder text-white">Bana Ulaşın</h2>
+                <p class="lead fw-normal text-white-50 mb-0">Bir proje fikriniz mi var? Hadi konuşalım!</p>
+            </div>
+            <div class="row gx-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6">
+                    <form id="contactForm">
+                        <div class="form-floating mb-3">
+                            <input class="form-control bg-dark text-white border-secondary" id="name" type="text" placeholder="Adınız..." required />
+                            <label for="name" class="text-white-50">Ad Soyad</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input class="form-control bg-dark text-white border-secondary" id="email" type="email" placeholder="email@ornek.com" required />
+                            <label for="email" class="text-white-50">E-posta Adresi</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control bg-dark text-white border-secondary" id="message" style="height: 10rem" placeholder="Mesajınız..." required></textarea>
+                            <label for="message" class="text-white-50">Mesajınız</label>
+                        </div>
+                        <div class="d-grid">
+                            <button class="btn btn-info btn-lg fw-bold" type="submit">Gönder</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

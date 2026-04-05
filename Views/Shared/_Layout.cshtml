@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - KEMAL KARATOPRAK</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/PortfolyoProjesi.styles.css" asp-append-version="true" />
+    <style>
+        /* Karizmatik bir dokunuş için özel arka plan ayarı */
+        body {
+            background-color: #0b0f19; /* Derin gece siyahı */
+            color: #e0e0e0; /* Göz yormayan açık gri yazı */
+        }
+        .footer {
+            background-color: #111827 !important; /* Navbar ile uyumlu footer */
+            border-top: 1px solid #1f2937 !important;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header>
+        <!-- Navbar: Koyu tema ve gölge eklendi -->
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom shadow-sm mb-3" style="border-color: #1f2937 !important;">
+            <div class="container-fluid">
+                <!-- Logo: İsmin sol üstte -->
+                <a class="navbar-brand fw-bold text-info" asp-area="" asp-controller="Home" asp-action="Index">KEMAL KARATOPRAK</a>
+                
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Gizlilik</a>
+                        </li>
+
+                        @* 🛡️ GÜVENLİK KONTROLÜ: Sadece giriş yapmış olan kullanıcılar görebilir *@
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <!-- Yeni Proje Ekle Butonu -->
+                            <li class="nav-item">
+                                <a class="nav-link text-info fw-bold" asp-controller="Home" asp-action="Create">+ Proje Ekle</a>
+                            </li>
+                            <!-- Yönetim Paneli Linki -->
+                            <li class="nav-item border-start border-secondary ms-2 ps-2">
+                                <a class="nav-link text-warning fw-bold" asp-controller="Admin" asp-action="Index">
+                                    🛠️ Yönetim Paneli
+                                </a>
+                            </li>
+                            <!-- Güvenli Çıkış Butonu -->
+                            <li class="nav-item">
+                                <a class="nav-link text-danger fw-bold" asp-controller="Admin" asp-action="Logout">Çıkış Yap</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <!-- Footer: Koyu tema ile uyumlu hale getirildi -->
+    <footer class="footer mt-auto py-3 text-muted border-top">
+        <div class="container text-center">
+            <span class="text-white-50">&copy; 2026 - <b class="text-info">KEMAL KARATOPRAK</b></span>
+            <span class="mx-2">|</span>
+            <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-decoration-none text-info">Gizlilik Politikası</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

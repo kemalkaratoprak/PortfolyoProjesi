@@ -1,0 +1,73 @@
+@{
+    Layout = null; // Giriş sayfasında üst menü (navbar) görünmesin, tam odaklanma sağlansın.
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Girişi - KEMAL KARATOPRAK</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <style>
+        body {
+            background-color: #0b0f19; /* Derin gece siyahı */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #e0e0e0;
+        }
+        .login-card {
+            background-color: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 15px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 400px;
+            shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .form-control {
+            background-color: #1f2937;
+            border: 1px solid #374151;
+            color: white;
+        }
+        .form-control:focus {
+            background-color: #1f2937;
+            border-color: #0dcaf0;
+            color: white;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-card shadow-lg text-center">
+    <h2 class="text-info fw-bold mb-4">🔐 Yönetim Girişi</h2>
+    
+    @if (ViewBag.Error != null)
+    {
+        <div class="alert alert-danger py-2" style="font-size: 0.9rem;">
+            @ViewBag.Error
+        </div>
+    }
+
+    <form asp-action="Login" method="post">
+        <div class="mb-3 text-start">
+            <label class="form-label small fw-bold text-info">Kullanıcı Adı</label>
+            <input type="text" name="username" class="form-control" placeholder="admin" required />
+        </div>
+        <div class="mb-4 text-start">
+            <label class="form-label small fw-bold text-info">Şifre</label>
+            <input type="password" name="password" class="form-control" placeholder="••••••••" required />
+        </div>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-info fw-bold">Giriş Yap</button>
+            <a href="/" class="text-white-50 text-decoration-none small mt-2">← Siteye Geri Dön</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

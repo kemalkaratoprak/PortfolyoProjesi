@@ -1,0 +1,32 @@
+@model PortfolyoProjesi.Models.Project
+
+@{
+    ViewData["Title"] = "Projeyi Düzenle";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 shadow-lg p-4 rounded bg-dark text-white border border-secondary">
+            <h2 class="text-center mb-4 text-info fw-bold">Projeyi Düzenle</h2>
+            <form asp-action="Edit">
+                <input type="hidden" asp-for="Id" />
+                <div class="mb-3">
+                    <label class="form-label fw-bold text-info">Proje Başlığı</label>
+                    <input asp-for="Title" class="form-control bg-dark text-white border-secondary" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold text-info">Açıklama</label>
+                    <textarea asp-for="Description" class="form-control bg-dark text-white border-secondary" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label fw-bold text-info">Görsel Linki (URL)</label>
+                    <input asp-for="ImageUrl" class="form-control bg-dark text-white border-secondary" required />
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-info btn-lg fw-bold">Değişiklikleri Kaydet</button>
+                    <a asp-action="Index" class="btn btn-outline-light">Vazgeç</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
