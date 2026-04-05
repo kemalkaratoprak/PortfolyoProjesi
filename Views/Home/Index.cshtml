@@ -1,14 +1,76 @@
-﻿<!-- İletişim Bölümü -->
+﻿@model List<PortfolyoProjesi.Models.Project>
+
+@{
+    ViewData["Title"] = "Yazılım Geliştirici Portfolyosu";
+}
+
+<!-- Hero Section -->
+<header class="py-5 mb-5" style="background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); border-radius: 20px; border: 1px solid #333;">
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center">
+            <div class="col-lg-8">
+                <div class="my-5 text-center text-xl-start">
+                    <h1 class="display-5 fw-bolder text-white mb-2">Geleceği Kodla İnşa Ediyorum</h1>
+                    <p class="lead fw-normal text-white-50 mb-4">ASP.NET Core ve SQL Server ile modern, güvenli ve ölçeklenebilir çözümler.</p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                        <a class="btn btn-info btn-lg px-4 me-sm-3 fw-bold" href="#projects">Projelerimi Gör</a>
+                        <a class="btn btn-outline-light btn-lg px-4" href="#contact">İletişim</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Hakkımda Bölümü -->
+<section class="py-5 bg-dark" id="about">
+    <div class="container px-5 my-5">
+        <div class="row gx-5 align-items-center">
+            <div class="col-lg-5 text-center mb-5 mb-lg-0">
+                <div class="position-relative d-inline-block">
+                    <img class="img-fluid rounded-circle shadow-lg border border-info p-2" src="~/img/profil.jpeg" alt="Kemal Karatoprak" style="width: 280px; height: 280px; object-fit: cover;" />
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <h2 class="fw-bolder text-info mb-3">Ben Kimim?</h2>
+                <p class="lead fw-normal text-white mb-4">Merhaba! Ben Kemal Karatoprak. Geleceği kodlarla inşa etmeye meraklı bir yazılım geliştiriciyim.</p>
+                <div class="d-flex gap-3">
+                    <a href="#contact" class="btn btn-outline-info">Bana Ulaşın</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projeler Bölümü -->
+<section id="projects" class="py-5 bg-dark">
+    <div class="container px-4">
+        <h2 class="fw-bolder mb-5 text-center text-info">Öne Çıkan Çalışmalarım</h2>
+        <div class="row gx-4">
+            @foreach (var proje in Model)
+            {
+                <div class="col-lg-4 mb-5">
+                    <div class="card h-100 shadow-lg border-secondary bg-dark text-white overflow-hidden">
+                        <img class="card-img-top" src="@proje.ImageUrl" alt="@proje.Title" style="height: 200px; object-fit: cover;" />
+                        <div class="card-body p-4">
+                            <h5 class="card-title mb-3 fw-bold text-info">@proje.Title</h5>
+                            <p class="card-text mb-0 text-white-50">@proje.Description</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<!-- İletişim Bölümü (DÜZELTİLMİŞ) -->
 <section class="py-5 bg-dark" id="contact">
     <div class="container px-5">
         <div class="bg-secondary rounded-4 py-5 px-4 px-md-5 shadow-lg border border-info">
             <div class="text-center mb-5">
-                <div class="feature bg-info bg-gradient text-dark rounded-3 mb-3 p-2 d-inline-block shadow">
-                    <i class="bi bi-envelope"></i>
-                </div>
+                <div class="feature bg-info bg-gradient text-dark rounded-3 mb-3 p-2 d-inline-block shadow"><i class="bi bi-envelope"></i></div>
                 <h2 class="fw-bolder text-white">Bana Ulaşın</h2>
                 <p class="lead fw-normal text-white-50 mb-0">Bir proje fikriniz mi var? Hadi konuşalım!</p>
-                
                 @if (TempData["MessageSent"] != null)
                 {
                     <div class="alert alert-success mt-3">@TempData["MessageSent"]</div>
@@ -16,7 +78,6 @@
             </div>
             <div class="row gx-5 justify-content-center">
                 <div class="col-lg-8 col-xl-6">
-                    <!-- Formun Backend Bağlantısı -->
                     <form asp-action="SendMessage" asp-controller="Home" method="post">
                         <div class="form-floating mb-3">
                             <input class="form-control bg-dark text-white border-secondary" name="Name" id="name" type="text" placeholder="Adınız..." required />
