@@ -29,13 +29,58 @@
             <div class="col-lg-5 text-center mb-5 mb-lg-0">
                 <div class="position-relative d-inline-block">
                     <img class="img-fluid rounded-circle shadow-lg border border-info p-2" src="~/img/profil.jpeg" alt="Kemal Karatoprak" style="width: 280px; height: 280px; object-fit: cover;" />
+                    <div class="position-absolute bottom-0 end-0 bg-info text-dark p-2 rounded-circle shadow">
+                        <span class="fw-bold">🚀👨‍💻</span>
+                    </div>
                 </div>
             </div>
             <div class="col-lg-7">
                 <h2 class="fw-bolder text-info mb-3">Ben Kimim?</h2>
-                <p class="lead fw-normal text-white mb-4">Merhaba! Ben Kemal Karatoprak. Geleceği kodlarla inşa etmeye meraklı bir yazılım geliştiriciyim.</p>
+                <p class="lead fw-normal text-white mb-4">
+                    Merhaba! Ben <strong>Kemal Karatoprak</strong>. Geleceği kodlarla inşa etmeye meraklı, ASP.NET Core ve modern web teknolojileri üzerine odaklanmış bir yazılım geliştiriciyim.
+                </p>
+                <p class="text-white-50 mb-4">
+                    Karmaşık problemleri basit ve kullanıcı dostu çözümlere dönüştürmeyi seviyorum. Veri tabanı mimarileri, backend süreçleri ve şık kullanıcı arayüzleri oluşturmak benim için bir tutku. Her projede yeni bir şeyler öğrenmeyi ve sınırlarımı zorlamayı hedefliyorum.
+                </p>
                 <div class="d-flex gap-3">
                     <a href="#contact" class="btn btn-outline-info">Bana Ulaşın</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Teknik Yetkinlikler Bölümü -->
+<section class="py-5 bg-dark border-bottom border-secondary mb-5">
+    <div class="container px-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bolder text-info">Teknik Yetkinlikler</h2>
+            <p class="lead fw-normal text-muted mb-0">Programlama dilleri, frameworkler ve kullandığım araçlar</p>
+        </div>
+        <div class="row gx-5">
+            <div class="col-lg-6 mb-5">
+                <div class="card h-100 bg-dark border-secondary shadow">
+                    <div class="card-body p-4">
+                        <h3 class="h5 text-info mb-4 border-bottom border-secondary pb-2"><i class="bi bi-code-slash me-2"></i>Programlama Dilleri</h3>
+                        <ul class="list-unstyled text-white-50">
+                            <li class="mb-3"><span class="text-white fw-bold">Python:</span> İleri Seviye (Pandas, NumPy ve Selenium)</li>
+                            <li class="mb-3"><span class="text-white fw-bold">C#:</span> Orta Seviye (.NET Core ve MVC)</li>
+                            <li class="mb-3"><span class="text-white fw-bold">JavaScript:</span> Orta Seviye</li>
+                            <li><span class="text-white fw-bold">HTML5:</span> Temel Seviye</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 mb-5">
+                <div class="card h-100 bg-dark border-secondary shadow">
+                    <div class="card-body p-4">
+                        <h3 class="h5 text-info mb-4 border-bottom border-secondary pb-2"><i class="bi bi-stack me-2"></i>Frameworkler & Teknolojiler</h3>
+                        <ul class="list-unstyled text-white-50">
+                            <li class="mb-3"><span class="text-white fw-bold">Web:</span> ASP.NET Core MVC</li>
+                            <li class="mb-3"><span class="text-white fw-bold">Frontend:</span> Bootstrap, CSS3</li>
+                            <li><span class="text-white fw-bold">Veri:</span> SQL Server (T-SQL, Ef Core)</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,14 +108,13 @@
     </div>
 </section>
 
-<!-- İletişim Bölümü (DÜZELTİLMİŞ) -->
+<!-- İletişim Bölümü -->
 <section class="py-5 bg-dark" id="contact">
     <div class="container px-5">
         <div class="bg-secondary rounded-4 py-5 px-4 px-md-5 shadow-lg border border-info">
             <div class="text-center mb-5">
                 <div class="feature bg-info bg-gradient text-dark rounded-3 mb-3 p-2 d-inline-block shadow"><i class="bi bi-envelope"></i></div>
                 <h2 class="fw-bolder text-white">Bana Ulaşın</h2>
-                <p class="lead fw-normal text-white-50 mb-0">Bir proje fikriniz mi var? Hadi konuşalım!</p>
                 @if (TempData["MessageSent"] != null)
                 {
                     <div class="alert alert-success mt-3">@TempData["MessageSent"]</div>
