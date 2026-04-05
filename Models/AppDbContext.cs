@@ -8,7 +8,10 @@ namespace PortfolyoProjesi.Models
         {
         }
 
-        // Veri tabanında 'Projects' adında bir tablo oluşturulmasını sağlar
+        // Projeler tablosu
         public DbSet<Project> Projects { get; set; } 
+
+        // İletişim mesajları tablosu (BU SATIRI EKLEDİK)
+        public DbSet<ContactMessage> ContactMessages { get; set; }
     }
 }
