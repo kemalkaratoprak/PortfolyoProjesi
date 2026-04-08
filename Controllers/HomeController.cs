@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PortfolyoProjesi.Models;
-using System.Net; // Mail için gerekli
-using System.Net.Mail; // Mail için gerekli
+using System.Net; 
+using System.Net.Mail; 
 
 namespace PortfolyoProjesi.Controllers
 {
@@ -27,44 +27,43 @@ namespace PortfolyoProjesi.Controllers
         {
             if (ModelState.IsValid)
             {
+                // 1. Veritabanına Kaydetme İşlemi
+                _context.ContactMessages.Add(model);
+                await _context.SaveChangesAsync();
+
+                // 2. Mail Gönderme İşlemi
                 try
                 {
-                    // 1. Önce veritabanına kaydedelim (Manyetik yedek)
-                    _context.ContactMessages.Add(model);
-                    await _context.SaveChangesAsync();
-
-                    // 2. Şimdi sana e-posta gönderelim
-                    var sc = new SmtpClient();
-                    sc.Port = 587;
-                    sc.Host = "smtp.gmail.com";
-                    sc.EnableSsl = true;
-                    sc.Credentials = new NetworkCredential("kemalkaratoprakk@gmail.com", "nnyb okyx xglt lrbr");
-
                     var mail = new MailMessage();
-                    mail.From = new MailAddress("kemalkaratoprakk@gmail.com", "Portfolyo Bildirim");
-                    mail.To.Add("kemalxkaratopak@gmail.com"); // Buraya mesajın gelmesini istediğin maili yaz
-                    mail.Subject = "Siteden Yeni Mesaj: " + model.Subject;
+                    mail.From = new MailAddress("kemalkaratoprak@gmail.com"); // Buraya kendi Gmail adresini yaz
+                    mail.To.Add("kemalkaratoprak@gmail.com"); // Mesajın gideceği adres
+                    mail.Subject = "Portfolyo Yeni Mesaj: " + model.Subject;
+                    mail.Body = $"Gönderen: {model.Name} <br> E-posta: {model.Email} <br><br> Mesaj: {model.Message}";
                     mail.IsBodyHtml = true;
-                    mail.Body = $@"
-                        <h3>Yeni Bir İletişim Mesajı Alındı</h3>
-                        <hr>
-                        <p><b>Gönderen:</b> {model.Name} ({model.Email})</p>
-                        <p><b>Konu:</b> {model.Subject}</p>
-                        <p><b>Mesaj:</b> {model.Message}</p>";
 
-                    await sc.SendMailAsync(mail);
-                    
-                    TempData["MessageSent"] = "Mesajınız başarıyla gönderildi!";
+                    using (SmtpClient sc = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        sc.EnableSsl = true;
+                        sc.Credentials = new NetworkCredential("kemalkaratoprak@gmail.com", "BURAYA-16-HANELI-KOD"); // Buraya 16 haneli uygulama şifreni yaz
+                        sc.Timeout = 10000; // 10 saniye bekler, sonra hata verir (Sonsuz yüklenmeyi engeller)
+
+                        await sc.SendMailAsync(mail);
+                    }
                 }
                 catch (Exception ex)
                 {
-                    TempData["Error"] = "Mesaj gönderilirken bir hata oluştu.";
+                    // Mail gitmese bile mesaj veritabanında saklı, bu yüzden hata vermeden ana sayfaya döner
+                    TempData["MessageSent"] = "Mesajınız kaydedildi ancak mail iletilemedi.";
+                    return RedirectToAction("Index");
                 }
+
+                TempData["MessageSent"] = "Mesajınız başarıyla gönderildi!";
             }
+
             return RedirectToAction("Index");
         }
 
-        // --- PROJE İŞLEMLERİ (MEVCUT KODLARIN) ---
+        // --- PROJE İŞLEMLERİ ---
         public IActionResult Create() => View();
 
         [HttpPost]

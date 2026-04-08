@@ -92,10 +92,26 @@
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 <script>
+    // Sayfa ilk açıldığında çalışır
     window.addEventListener('load', function () {
-        setTimeout(function() {
-            document.getElementById('splash-screen').classList.add('fade-out');
-        }, 3000); // 3 saniye sonra ekran kaybolur
+        var loader = document.getElementById('splash-screen');
+        if (loader) {
+            setTimeout(function() {
+                loader.classList.add('fade-out');
+            }, 1500); // Süreyi biraz kısalttık
+        }
+    });
+
+    // Form gönderilirken sonsuz döngüye girmemesi için kontrol
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', function() {
+            // Butona basıldığında butonun metnini değiştirip etkisiz yapalım
+            const btn = this.querySelector('button[type="submit"]');
+            if(btn) {
+                btn.innerHTML = "Gönderiliyor...";
+                btn.disabled = true;
+            }
+        });
     });
 </script>
 </body>
