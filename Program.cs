@@ -39,6 +39,11 @@ app.UseAuthorization();  // 2. Buraya girmeye iznin var mı?
 app.MapStaticAssets();
 
 app.MapControllerRoute(
+    name: "admin",
+    pattern: "Admin",
+    defaults: new { controller = "Home", action = "AdminMessages" });
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();

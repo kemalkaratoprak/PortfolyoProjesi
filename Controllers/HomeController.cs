@@ -96,10 +96,14 @@ namespace PortfolyoProjesi.Controllers
         }
     
         // --- SADECE SENİN GÖREBİLECEĞİN MESAJ LİSTESİ ---
-        public IActionResult AdminMessages()
+                public IActionResult AdminMessages()
         {
-            // Veritabanındaki tüm mesajları tarih sırasına göre getir (En yeni en üstte)
-            var messages = _context.ContactMessages.OrderByDescending(m => m.Id).ToList();
+            // Veritabanındaki ContactMessages tablosunun tamamını listeye çevirip getirir.
+            // OrderByDescending(m => m.Id) sayesinde ID'si en büyük olan (en yeni) mesaj en üstte olur.
+            var messages = _context.ContactMessages
+                                .OrderByDescending(m => m.Id)
+                                .ToList(); 
+
             return View(messages);
         }
     }
