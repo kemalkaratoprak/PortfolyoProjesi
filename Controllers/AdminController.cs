@@ -20,14 +20,14 @@ namespace PortfolyoProjesi.Controllers
 
         // --- GÜVENLİ ALAN ---
         // Sadece giriş yapanlar bu listeyi görebilir
-            [Authorize(AuthenticationSchemes = "MyCookieAuth")]
+                    [Authorize(AuthenticationSchemes = "MyCookieAuth")]
+        [Authorize(AuthenticationSchemes = "MyCookieAuth")]
         public IActionResult Index()
         {
-            // 1. Projeleri çek (Zaten vardı)
+            // Projeleri çekiyoruz
             var projects = _context.Projects.ToList();
 
-            // 2. Mesajları çek (Yeni ekledik)
-            // ViewBag.Messages içine tüm mesajları ID'ye göre tersten sıralayıp atıyoruz
+            // Mesajları çekiyoruz 
             ViewBag.Messages = _context.ContactMessages.OrderByDescending(m => m.Id).ToList();
 
             return View(projects);

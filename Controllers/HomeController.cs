@@ -1,8 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using PortfolyoProjesi.Models;
-using System.Net; 
-using System.Net.Mail; 
+
 
 namespace PortfolyoProjesi.Controllers
 {
@@ -95,16 +94,6 @@ namespace PortfolyoProjesi.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     
-        // --- SADECE SENİN GÖREBİLECEĞİN MESAJ LİSTESİ ---
-                public IActionResult AdminMessages()
-        {
-            // Veritabanındaki ContactMessages tablosunun tamamını listeye çevirip getirir.
-            // OrderByDescending(m => m.Id) sayesinde ID'si en büyük olan (en yeni) mesaj en üstte olur.
-            var messages = _context.ContactMessages
-                                .OrderByDescending(m => m.Id)
-                                .ToList(); 
-
-            return View(messages);
-        }
+ 
     }
 }

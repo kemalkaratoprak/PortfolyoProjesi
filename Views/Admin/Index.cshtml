@@ -14,14 +14,13 @@
         <div class="d-flex gap-2">
             <a asp-controller="Home" asp-action="Index" class="btn btn-outline-light btn-sm fw-bold">← Siteye Dön</a>
             <a asp-controller="Home" asp-action="Create" class="btn btn-success btn-sm fw-bold">+ Yeni Proje Ekle</a>
-            <!-- ÇIKIŞ BUTONU: Güvenliğin son halkası -->
             <a asp-controller="Admin" asp-action="Logout" class="btn btn-danger btn-sm fw-bold">Oturumu Kapat</a>
         </div>
     </div>
 
-    <!-- Proje Tablosu -->
-    <div class="table-responsive shadow-lg rounded">
-        <table class="table table-dark table-hover align-middle border-secondary mb-0">
+    <!-- 1. KISIM: Proje Tablosu -->
+    <div class="table-responsive shadow-lg rounded border border-secondary mb-5">
+        <table class="table table-dark table-hover align-middle mb-0">
             <thead class="table-secondary text-dark">
                 <tr>
                     <th scope="col" style="width: 80px;">Görsel</th>
@@ -63,44 +62,61 @@
                 }
             </tbody>
         </table>
-                <hr class="my-5" /> <!-- Araya bir çizgi çekelim -->
+    </div>
 
-        <div class="mt-5">
-            <h2 class="text-danger"><i class="fas fa-envelope"></i> Gelen İletişim Mesajları</h2>
-            <div class="table-responsive shadow-sm p-3 mb-5 bg-white rounded">
-                <table class="table table-hover mt-3">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>#</th>
-                            <th>Gönderen</th>
-                            <th>E-posta</th>
-                            <th>Konu</th>
-                            <th>Mesaj</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (ViewBag.Messages != null)
-                        {
-                            @foreach (var msg in ViewBag.Messages)
-                            {
-                                <tr>
-                                    <td>@msg.Id</td>
-                                    <td><strong>@msg.Name</strong></td>
-                                    <td><a href="mailto:@msg.Email">@msg.Email</a></td>
-                                    <td>@msg.Subject</td>
-                                    <td>@msg.Message</td>
-                                </tr>
-                            }
-                        }
-                        else
+    <hr class="my-5 border-secondary" style="border-width: 3px; opacity: 0.5;" />
+
+    <!-- 2. KISIM: Gelen Mesajlar Bölümü -->
+    <div class="mt-5 mb-5">
+        <h2 class="text-warning mb-4"><i class="fas fa-envelope"></i> 📩 Gelen İletişim Mesajları</h2>
+        <div class="table-responsive shadow-lg rounded bg-white p-2">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th style="width: 50px;">#</th>
+                        <th style="width: 150px;">Gönderen</th>
+                        <th style="width: 200px;">E-posta</th>
+                        <th>Konu</th>
+                        <th>Mesaj</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.Messages != null && ((List<PortfolyoProjesi.Models.ContactMessage>)ViewBag.Messages).Any())
+                    {
+                        @foreach (var msg in (List<PortfolyoProjesi.Models.ContactMessage>)ViewBag.Messages)
                         {
                             <tr>
-                                <td colspan="5" class="text-center">Henüz mesaj bulunmuyor.</td>
+                                <td class="fw-bold text-muted">@msg.Id</td>
+                                <td><span class="badge bg-primary px-3 py-2">@msg.Name</span></td>
+                                <td><a href="mailto:@msg.Email" class="text-decoration-none text-info">@msg.Email</a></td>
+                                <td class="fw-bold">@msg.Subject</td>
+                                <td class="text-muted" style="font-size: 0.9rem;">@msg.Message</td>
                             </tr>
                         }
-                    </tbody>
-                </table>
-            </div>
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center py-4 text-muted italic">Henüz bir mesaj alınmadı.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
+
+<style>
+    /* Admin paneli için sayfa arkası biraz daha koyu olsun */
+    body {
+        background-color: #1a1a1a;
+        color: white;
+    }
+    .bg-white {
+        background-color: #ffffff !important;
+        color: #333 !important;
+    }
+    .table-hover tbody tr:hover {
+        background-color: rgba(255,255,255,0.05);
+    }
+</style>
