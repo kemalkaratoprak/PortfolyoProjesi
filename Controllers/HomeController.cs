@@ -44,7 +44,7 @@ namespace PortfolyoProjesi.Controllers
                     using (SmtpClient sc = new SmtpClient("smtp.gmail.com", 587))
                     {
                         sc.EnableSsl = true;
-                        sc.Credentials = new NetworkCredential("kemalkaratoprakk@gmail.com", "ufinjwesmgssxlf"); // Buraya 16 haneli uygulama şifreni yaz
+                        sc.Credentials = new NetworkCredential("kemalkaratoprakk@gmail.com", "ywdsucnknoqukhhl"); // Buraya 16 haneli uygulama şifreni yaz
                         sc.Timeout = 10000; // 10 saniye bekler, sonra hata verir (Sonsuz yüklenmeyi engeller)
 
                         await sc.SendMailAsync(mail);
