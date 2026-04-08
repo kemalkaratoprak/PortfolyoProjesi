@@ -17,7 +17,6 @@ C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\PortfolyoPro
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\scopedcss\bundle\PortfolyoProjesi.styles.css
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\scopedcss\projectbundle\PortfolyoProjesi.bundle.scp.css
-C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\compressed\9iqhmgjcjf-b9sayid5wm.gz
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\compressed\cpdwhq0pnw-xtxxf3hu2r.gz
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\compressed\i5srg3negp-bqjiyaj88i.gz
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\compressed\vzjyfcgph0-c2jlpeoesf.gz
@@ -219,3 +218,4 @@ C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\PortfolyoPro
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\Portfoly.44E25BB6.Up2Date
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\PortfolyoProjesi.sourcelink.json
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\compressed\6229x97q27-2aa7ow0ypk.gz
+C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\compressed\9iqhmgjcjf-7bgu2qwpxv.gz

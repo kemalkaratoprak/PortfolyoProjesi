@@ -20,6 +20,13 @@
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
+    <div id="splash-screen">
+    <div class="splash-content">
+        <div class="splash-logo">K<span>K</span></div>
+        <div class="splash-loader"></div>
+        <p class="text-white-50 mt-3">Gelecek Yükleniyor...</p>
+    </div>
+</div>
     <header>
         <!-- Navbar: Koyu tema ve gölge eklendi -->
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom shadow-sm mb-3" style="border-color: #1f2937 !important;">
@@ -84,5 +91,12 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+<script>
+    window.addEventListener('load', function () {
+        setTimeout(function() {
+            document.getElementById('splash-screen').classList.add('fade-out');
+        }, 3000); // 3 saniye sonra ekran kaybolur
+    });
+</script>
 </body>
 </html>
