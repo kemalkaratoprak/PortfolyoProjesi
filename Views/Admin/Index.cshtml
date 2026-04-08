@@ -63,5 +63,44 @@
                 }
             </tbody>
         </table>
+                <hr class="my-5" /> <!-- Araya bir çizgi çekelim -->
+
+        <div class="mt-5">
+            <h2 class="text-danger"><i class="fas fa-envelope"></i> Gelen İletişim Mesajları</h2>
+            <div class="table-responsive shadow-sm p-3 mb-5 bg-white rounded">
+                <table class="table table-hover mt-3">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>#</th>
+                            <th>Gönderen</th>
+                            <th>E-posta</th>
+                            <th>Konu</th>
+                            <th>Mesaj</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.Messages != null)
+                        {
+                            @foreach (var msg in ViewBag.Messages)
+                            {
+                                <tr>
+                                    <td>@msg.Id</td>
+                                    <td><strong>@msg.Name</strong></td>
+                                    <td><a href="mailto:@msg.Email">@msg.Email</a></td>
+                                    <td>@msg.Subject</td>
+                                    <td>@msg.Message</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5" class="text-center">Henüz mesaj bulunmuyor.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
