@@ -35,8 +35,8 @@ namespace PortfolyoProjesi.Controllers
                 try
                 {
                     var mail = new MailMessage();
-                    mail.From = new MailAddress("kemalkaratoprak@gmail.com"); // Buraya kendi Gmail adresini yaz
-                    mail.To.Add("kemalkaratoprak@gmail.com"); // Mesajın gideceği adres
+                    mail.From = new MailAddress("kemalkaratoprakk@gmail.com"); // Buraya kendi Gmail adresini yaz
+                    mail.To.Add("kemalxkaratoprak@gmail.com"); // Mesajın gideceği adres
                     mail.Subject = "Portfolyo Yeni Mesaj: " + model.Subject;
                     mail.Body = $"Gönderen: {model.Name} <br> E-posta: {model.Email} <br><br> Mesaj: {model.Message}";
                     mail.IsBodyHtml = true;
