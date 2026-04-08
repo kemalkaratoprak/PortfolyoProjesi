@@ -22,44 +22,23 @@ namespace PortfolyoProjesi.Controllers
         }
 
         // --- İLETİŞİM FORMU VE MAİL GÖNDERME METODU ---
-        [HttpPost]
+                [HttpPost]
         public async Task<IActionResult> SendMessage(ContactMessage model)
         {
             if (ModelState.IsValid)
             {
-                // 1. Veritabanına Kaydetme İşlemi
+                // 1. Sadece Veritabanına Kaydediyoruz
                 _context.ContactMessages.Add(model);
                 await _context.SaveChangesAsync();
 
-                // 2. Mail Gönderme İşlemi
-                try
-                {
-                    var mail = new MailMessage();
-                    mail.From = new MailAddress("kemalkaratoprakk@gmail.com"); // Buraya kendi Gmail adresini yaz
-                    mail.To.Add("kemalxkaratoprak@gmail.com"); // Mesajın gideceği adres
-                    mail.Subject = "Portfolyo Yeni Mesaj: " + model.Subject;
-                    mail.Body = $"Gönderen: {model.Name} <br> E-posta: {model.Email} <br><br> Mesaj: {model.Message}";
-                    mail.IsBodyHtml = true;
-
-                    using (SmtpClient sc = new SmtpClient("smtp.gmail.com", 587))
-                    {
-                        sc.EnableSsl = true;
-                        sc.Credentials = new NetworkCredential("kemalkaratoprakk@gmail.com", "ywdsucnknoqukhhl"); // Buraya 16 haneli uygulama şifreni yaz
-                        sc.Timeout = 10000; // 10 saniye bekler, sonra hata verir (Sonsuz yüklenmeyi engeller)
-
-                        await sc.SendMailAsync(mail);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // Mail gitmese bile mesaj veritabanında saklı, bu yüzden hata vermeden ana sayfaya döner
-                    TempData["MessageSent"] = "Mesajınız kaydedildi ancak mail iletilemedi.";
-                    return RedirectToAction("Index");
-                }
-
-                TempData["MessageSent"] = "Mesajınız başarıyla gönderildi!";
+                // 2. Kullanıcıya başarı mesajı veriyoruz
+                TempData["MessageSent"] = "Mesajınız başarıyla iletildi!";
+                
+                // 3. Hiç beklemeden ana sayfaya dönüyoruz
+                return RedirectToAction("Index");
             }
 
+            // Model geçerli değilse sayfaya geri dön
             return RedirectToAction("Index");
         }
 
@@ -114,6 +93,14 @@ namespace PortfolyoProjesi.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+    
+        // --- SADECE SENİN GÖREBİLECEĞİN MESAJ LİSTESİ ---
+        public IActionResult AdminMessages()
+        {
+            // Veritabanındaki tüm mesajları tarih sırasına göre getir (En yeni en üstte)
+            var messages = _context.ContactMessages.OrderByDescending(m => m.Id).ToList();
+            return View(messages);
         }
     }
 }

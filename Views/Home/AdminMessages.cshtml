@@ -1,0 +1,47 @@
+@model IEnumerable<PortfolyoProjesi.Models.ContactMessage>
+
+@{
+    ViewData["Title"] = "Gelen Mesajlar";
+}
+
+<div class="container mt-5 pt-5">
+    <h2 class="mb-4 text-primary">📩 Gelen İletişim Mesajları</h2>
+    <p class="text-muted">Veritabanına kaydedilen tüm mesajlar burada listelenir.</p>
+
+    <div class="table-responsive shadow-lg rounded">
+        <table class="table table-hover table-striped border">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Gönderen</th>
+                    <th>E-posta</th>
+                    <th>Konu</th>
+                    <th>Mesaj</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td><strong>@item.Name</strong></td>
+                        <td><a href="mailto:@item.Email">@item.Email</a></td>
+                        <td>@item.Subject</td>
+                        <td>@item.Message</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<style>
+    /* Tabloyu biraz daha şık gösterelim */
+    .table-responsive {
+        background: white;
+        padding: 20px;
+    }
+    .container {
+        min-height: 80vh;
+    }
+</style>
