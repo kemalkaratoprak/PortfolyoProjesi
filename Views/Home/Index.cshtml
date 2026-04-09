@@ -43,7 +43,6 @@
                     Karmaşık problemleri basit ve kullanıcı dostu çözümlere dönüştürmeyi seviyorum. Veri tabanı mimarileri, backend süreçleri ve şık kullanıcı arayüzleri oluşturmak benim için bir tutku.
                 </p>
                 
-                <!-- Butonlar ve Sosyal Medya İkonları Bir Arada -->
                 <div class="d-flex flex-column gap-3">
                     <div class="d-flex gap-3 align-items-center">
                         <a href="#contact" class="btn btn-outline-info">Bana Ulaşın</a>
@@ -52,7 +51,6 @@
                         </a>
                     </div>
                     
-                    <!-- Sosyal Medya İkonları -->
                     <div class="social-links mt-2">
                         <a href="https://github.com/kemalkaratoprak" target="_blank" class="me-3 text-light fs-2 social-icon" title="GitHub">
                             <i class="fab fa-github"></i>
@@ -83,7 +81,7 @@
                 <div class="card h-100 bg-dark border-secondary shadow-lg transform-hover">
                     <div class="card-body p-4">
                         <div class="d-flex align-items-center mb-4">
-                            <div class="feature bg-info bg-gradient text-dark rounded-3 me-3 p-3 shadow">
+                            <div class="feature bg-info bg-gradient text-dark rounded-3 me-3 shadow" style="width: 60px; height: 60px;">
                                 <i class="bi bi-code-slash fs-3"></i>
                             </div>
                             <h3 class="h4 text-info mb-0 fw-bold">Programlama Dilleri</h3>
@@ -110,7 +108,7 @@
                 <div class="card h-100 bg-dark border-secondary shadow-lg transform-hover">
                     <div class="card-body p-4">
                         <div class="d-flex align-items-center mb-4">
-                            <div class="feature bg-info bg-gradient text-dark rounded-3 me-3 p-3 shadow">
+                            <div class="feature bg-info bg-gradient text-dark rounded-3 me-3 shadow" style="width: 60px; height: 60px;">
                                 <i class="bi bi-stack fs-3"></i>
                             </div>
                             <h3 class="h4 text-info mb-0 fw-bold">Frameworkler & Teknolojiler</h3>
@@ -137,7 +135,7 @@
                 <div class="card bg-dark border-secondary shadow-lg transform-hover">
                     <div class="card-body p-4">
                         <div class="d-flex align-items-center mb-4">
-                            <div class="feature bg-info bg-gradient text-dark rounded-3 me-3 p-3 shadow">
+                            <div class="feature bg-info bg-gradient text-dark rounded-3 me-3 shadow" style="width: 60px; height: 60px;">
                                 <i class="bi bi-tools fs-3"></i>
                             </div>
                             <h3 class="h4 text-info mb-0 fw-bold">Araçlar & Ortamlar</h3>
@@ -164,21 +162,18 @@
 </section>
 
 <style>
-    /* Kartların Genel Ayarı */
     .transform-hover {
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Daha pürüzsüz geçiş */
-        will-change: transform, box-shadow; /* Tarayıcıyı önceden uyarır, titremeyi engeller */
-        backface-visibility: hidden; /* Donanım hızlandırmasını açar */
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        will-change: transform, box-shadow;
+        backface-visibility: hidden;
     }
 
-    /* Kart Hover Efekti */
     .transform-hover:hover {
-        transform: translateY(-8px) scale(1.01); /* Hem zıpla hem hafif büyü, daha stabil durur */
+        transform: translateY(-8px) scale(1.01);
         box-shadow: 0 15px 30px rgba(13, 202, 240, 0.15) !important;
-        border-color: #0dcaf0 !important; /* Kenarlığı belirginleştir */
+        border-color: #0dcaf0 !important;
     }
 
-    /* Sosyal İkonların Bağımsızlığı */
     .social-icon {
         transition: transform 0.3s ease, color 0.3s ease;
         display: inline-block;
@@ -191,10 +186,21 @@
         color: inherit;
     }
 
-    /* İkon Renkleri */
     .fa-github:hover { color: #6e5494 !important; }
     .fa-linkedin:hover { color: #0077b5 !important; }
     .fa-x-twitter:hover { color: #ffffff !important; }
+
+    /* İkonları Merkeze Alan Kritik Bölüm */
+    .feature {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .feature i {
+        line-height: 0;
+        display: inline-block;
+    }
 </style>
 
 <!-- Projeler Bölümü -->
