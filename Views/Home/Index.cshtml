@@ -164,28 +164,37 @@
 </section>
 
 <style>
+    /* Kartların Genel Ayarı */
+    .transform-hover {
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Daha pürüzsüz geçiş */
+        will-change: transform, box-shadow; /* Tarayıcıyı önceden uyarır, titremeyi engeller */
+        backface-visibility: hidden; /* Donanım hızlandırmasını açar */
+    }
+
+    /* Kart Hover Efekti */
+    .transform-hover:hover {
+        transform: translateY(-8px) scale(1.01); /* Hem zıpla hem hafif büyü, daha stabil durur */
+        box-shadow: 0 15px 30px rgba(13, 202, 240, 0.15) !important;
+        border-color: #0dcaf0 !important; /* Kenarlığı belirginleştir */
+    }
+
+    /* Sosyal İkonların Bağımsızlığı */
     .social-icon {
         transition: transform 0.3s ease, color 0.3s ease;
         display: inline-block;
-        text-decoration: none !important; /* Alt çizgiyi (underscore) tamamen yok eder */
-        border: none !important;         /* Eğer bazı tarayıcılarda çerçeve çıkarsa onu da siler */
+        text-decoration: none !important;
         outline: none !important;
     }
 
     .social-icon:hover {
-        transform: translateY(-5px); /* Üzerine gelince yukarı zıplama efekti */
-        text-decoration: none !important;
+        transform: translateY(-5px);
+        color: inherit;
     }
 
-    /* İkonların üzerine gelince kendi markalarının renklerini alması için */
-    .fa-github:hover { color: #6e5494; }
-    .fa-linkedin:hover { color: #0077b5; }
-    .fa-x-twitter:hover { color: #1DA1F2; }
-    
-    /* Hover efektinde de çizgiyi engellemek için garantiye alalım */
-    .social-links a:hover {
-        text-decoration: none !important;
-    }
+    /* İkon Renkleri */
+    .fa-github:hover { color: #6e5494 !important; }
+    .fa-linkedin:hover { color: #0077b5 !important; }
+    .fa-x-twitter:hover { color: #ffffff !important; }
 </style>
 
 <!-- Projeler Bölümü -->
