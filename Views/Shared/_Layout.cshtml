@@ -1,38 +1,64 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - KEMAL KARATOPRAK</title>
+
+    <!-- SEO ve Meta Etiketleri -->
+    <meta name="description" content="@(ViewData["Description"] ?? "Kemal Karatoprak - Yazılım Geliştirici Portfolyosu. ASP.NET Core, C# ve modern web teknolojileri ile inşa edilmiş projeler.")">
+    <meta name="keywords" content="Kemal Karatoprak, Yazılım Geliştirici, ASP.NET Core, C#, SQL Server, Portfolyo, Web Geliştirme, Karatoprak Yazılım">
+    <meta name="author" content="Kemal Karatoprak">
+
+    <!-- Open Graph (LinkedIn, Facebook, WhatsApp için) -->
+    <meta property="og:title" content="@(ViewData["Title"] ?? "Kemal Karatoprak | Yazılım Geliştirici")">
+    <meta property="og:description" content="Geleceği kodlarla inşa ediyorum. Modern ve ölçeklenebilir backend çözümlerimi keşfedin.">
+    <meta property="og:image" content="https://kemalkaratoprak.com.tr/img/profil.jpeg">
+    <meta property="og:url" content="https://kemalkaratoprak.com.tr">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Kemal Karatoprak Portfolio">
+
+    <!-- Twitter Card (X için) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Kemal Karatoprak | Portfolyo">
+    <meta name="twitter:description" content="ASP.NET Core ve C# ile geliştirilmiş projelerimi inceleyin.">
+    <meta name="twitter:image" content="https://kemalkaratoprak.com.tr/img/profil.jpeg">
+
+    <!-- Stil Dosyaları -->
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/PortfolyoProjesi.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
     <style>
-        /* Karizmatik bir dokunuş için özel arka plan ayarı */
         body {
-            background-color: #0b0f19; /* Derin gece siyahı */
-            color: #e0e0e0; /* Göz yormayan açık gri yazı */
+            background-color: #0b0f19;
+            color: #e0e0e0;
         }
         .footer {
-            background-color: #111827 !important; /* Navbar ile uyumlu footer */
+            background-color: #111827 !important;
             border-top: 1px solid #1f2937 !important;
+        }
+        /* Splash Screen Fade Out Efekti */
+        .fade-out {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
         }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
     <div id="splash-screen">
-    <div class="splash-content">
-        <div class="splash-logo">K<span>K</span></div>
-        <div class="splash-loader"></div>
-        <p class="text-white-50 mt-3">Gelecek Yükleniyor...</p>
+        <div class="splash-content">
+            <div class="splash-logo">K<span>K</span></div>
+            <div class="splash-loader"></div>
+            <p class="text-white-50 mt-3">Gelecek Yükleniyor...</p>
+        </div>
     </div>
-</div>
+
     <header>
-        <!-- Navbar: Koyu tema ve gölge eklendi -->
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom shadow-sm mb-3" style="border-color: #1f2937 !important;">
             <div class="container-fluid">
-                <!-- Logo: İsmin sol üstte -->
                 <a class="navbar-brand fw-bold text-info" asp-area="" asp-controller="Home" asp-action="Index">KEMAL KARATOPRAK</a>
                 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -49,20 +75,16 @@
                             <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Gizlilik</a>
                         </li>
 
-                        @* 🛡️ GÜVENLİK KONTROLÜ: Sadece giriş yapmış olan kullanıcılar görebilir *@
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <!-- Yeni Proje Ekle Butonu -->
                             <li class="nav-item">
                                 <a class="nav-link text-info fw-bold" asp-controller="Home" asp-action="Create">+ Proje Ekle</a>
                             </li>
-                            <!-- Yönetim Paneli Linki -->
                             <li class="nav-item border-start border-secondary ms-2 ps-2">
                                 <a class="nav-link text-warning fw-bold" asp-controller="Admin" asp-action="Index">
                                     🛠️ Yönetim Paneli
                                 </a>
                             </li>
-                            <!-- Güvenli Çıkış Butonu -->
                             <li class="nav-item">
                                 <a class="nav-link text-danger fw-bold" asp-controller="Admin" asp-action="Logout">Çıkış Yap</a>
                             </li>
@@ -79,7 +101,6 @@
         </main>
     </div>
 
-    <!-- Footer: Koyu tema ile uyumlu hale getirildi -->
     <footer class="footer mt-auto py-3 text-muted border-top">
         <div class="container text-center">
             <span class="text-white-50">&copy; 2026 - <b class="text-info">KEMAL KARATOPRAK</b></span>
@@ -92,28 +113,26 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-<script>
-    // Sayfa ilk açıldığında çalışır
-    window.addEventListener('load', function () {
-        var loader = document.getElementById('splash-screen');
-        if (loader) {
-            setTimeout(function() {
-                loader.classList.add('fade-out');
-            }, 1500); // Süreyi biraz kısalttık
-        }
-    });
 
-    // Form gönderilirken sonsuz döngüye girmemesi için kontrol
-    document.querySelectorAll('form').forEach(form => {
-        form.addEventListener('submit', function() {
-            // Butona basıldığında butonun metnini değiştirip etkisiz yapalım
-            const btn = this.querySelector('button[type="submit"]');
-            if(btn) {
-                btn.innerHTML = "Gönderiliyor...";
-                btn.disabled = true;
+    <script>
+        window.addEventListener('load', function () {
+            var loader = document.getElementById('splash-screen');
+            if (loader) {
+                setTimeout(function() {
+                    loader.classList.add('fade-out');
+                }, 1200);
             }
         });
-    });
-</script>
+
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', function() {
+                const btn = this.querySelector('button[type="submit"]');
+                if(btn) {
+                    btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Gönderiliyor...';
+                    btn.disabled = true;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
