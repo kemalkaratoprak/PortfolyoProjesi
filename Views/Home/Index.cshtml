@@ -42,12 +42,28 @@
                 <p class="text-white-50 mb-4">
                     Karmaşık problemleri basit ve kullanıcı dostu çözümlere dönüştürmeyi seviyorum. Veri tabanı mimarileri, backend süreçleri ve şık kullanıcı arayüzleri oluşturmak benim için bir tutku.
                 </p>
-                <!-- CV İndirme ve İletişim Butonları -->
-                <div class="d-flex gap-3 align-items-center">
-                    <a href="#contact" class="btn btn-outline-info">Bana Ulaşın</a>
-                    <a href="~/files/Kemal_Karatoprak_CV.pdf" download="Kemal_Karatoprak_CV.pdf" class="btn btn-link text-info text-decoration-none fw-bold">
-                        <i class="bi bi-file-earmark-pdf-fill"></i> CV İndir (PDF)
-                    </a>
+                
+                <!-- Butonlar ve Sosyal Medya İkonları Bir Arada -->
+                <div class="d-flex flex-column gap-3">
+                    <div class="d-flex gap-3 align-items-center">
+                        <a href="#contact" class="btn btn-outline-info">Bana Ulaşın</a>
+                        <a href="~/files/Kemal_Karatoprak_CV.pdf" download="Kemal_Karatoprak_CV.pdf" class="btn btn-link text-info text-decoration-none fw-bold">
+                            <i class="bi bi-file-earmark-pdf-fill"></i> CV İndir (PDF)
+                        </a>
+                    </div>
+                    
+                    <!-- Sosyal Medya İkonları -->
+                    <div class="social-links mt-2">
+                        <a href="https://github.com/kemalkaratoprak" target="_blank" class="me-3 text-light fs-2 social-icon" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/kemalkaratoprak" target="_blank" class="me-3 text-info fs-2 social-icon" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://x.com/kemalk27" target="_blank" class="text-light fs-2 social-icon" title="X (Twitter)">
+                            <i class="fab fa-x-twitter"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -148,12 +164,27 @@
 </section>
 
 <style>
-    .transform-hover {
-        transition: transform 0.3s ease-in-out, shadow 0.3s ease-in-out;
+    .social-icon {
+        transition: transform 0.3s ease, color 0.3s ease;
+        display: inline-block;
+        text-decoration: none !important; /* Alt çizgiyi (underscore) tamamen yok eder */
+        border: none !important;         /* Eğer bazı tarayıcılarda çerçeve çıkarsa onu da siler */
+        outline: none !important;
     }
-    .transform-hover:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 1rem 3rem rgba(13, 202, 240, 0.2) !important; /* Info renginde gölge */
+
+    .social-icon:hover {
+        transform: translateY(-5px); /* Üzerine gelince yukarı zıplama efekti */
+        text-decoration: none !important;
+    }
+
+    /* İkonların üzerine gelince kendi markalarının renklerini alması için */
+    .fa-github:hover { color: #6e5494; }
+    .fa-linkedin:hover { color: #0077b5; }
+    .fa-x-twitter:hover { color: #1DA1F2; }
+    
+    /* Hover efektinde de çizgiyi engellemek için garantiye alalım */
+    .social-links a:hover {
+        text-decoration: none !important;
     }
 </style>
 
