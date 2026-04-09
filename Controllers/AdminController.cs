@@ -3,9 +3,6 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using System.Security.Claims;
 using PortfolyoProjesi.Models;
-using System.Linq;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace PortfolyoProjesi.Controllers
 {
@@ -18,35 +15,49 @@ namespace PortfolyoProjesi.Controllers
             _context = context;
         }
 
-        // --- GÜVENLİ ALAN ---
-        // Sadece giriş yapanlar bu listeyi görebilir
-                    [Authorize(AuthenticationSchemes = "MyCookieAuth")]
         [Authorize(AuthenticationSchemes = "MyCookieAuth")]
         public IActionResult Index()
         {
-            // Projeleri çekiyoruz
             var projects = _context.Projects.ToList();
-
-            // Mesajları çekiyoruz 
-            ViewBag.Messages = _context.ContactMessages.OrderByDescending(m => m.Id).ToList();
-
+            // Mesajları tarihe göre (en yeni en üstte) çekiyoruz
+            ViewBag.Messages = _context.ContactMessages.OrderByDescending(m => m.CreatedDate).ToList();
             return View(projects);
         }
 
-        // --- GİRİŞ İŞLEMLERİ ---
+        // --- YENİ EKLENEN MESAJ YÖNETİM METODLARI ---
 
-        // 1. Giriş Sayfasını Göster (GET)
-        [HttpGet]
-        public IActionResult Login()
+        [Authorize(AuthenticationSchemes = "MyCookieAuth")]
+        public IActionResult DeleteMessage(int id)
         {
-            return View();
+            var message = _context.ContactMessages.Find(id);
+            if (message != null)
+            {
+                _context.ContactMessages.Remove(message);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index");
         }
 
-        // 2. Şifreyi Kontrol Et (POST)
+        [Authorize(AuthenticationSchemes = "MyCookieAuth")]
+        public IActionResult MarkAsRead(int id)
+        {
+            var message = _context.ContactMessages.Find(id);
+            if (message != null)
+            {
+                message.IsRead = true;
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+        }
+
+        // --- GİRİŞ / ÇIKIŞ İŞLEMLERİ ---
+
+        [HttpGet]
+        public IActionResult Login() => View();
+
         [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
         {
-            // ŞİMDİLİK BASİT ŞİFRE KONTROLÜ (Kendine göre değiştirebilirsin)
             if (username == "admin" && password == "Kemal123!")
             {
                 var claims = new List<Claim>
@@ -54,20 +65,14 @@ namespace PortfolyoProjesi.Controllers
                     new Claim(ClaimTypes.Name, username),
                     new Claim(ClaimTypes.Role, "Admin")
                 };
-
                 var claimsIdentity = new ClaimsIdentity(claims, "MyCookieAuth");
-
                 await HttpContext.SignInAsync("MyCookieAuth", new ClaimsPrincipal(claimsIdentity));
-
                 return RedirectToAction("Index", "Admin");
             }
-
-            // Şifre yanlışsa uyarı ver
-            ViewBag.Error = "Kullanıcı adı veya şifre hatalı!";
+            ViewBag.Error = "Hatalı giriş!";
             return View();
         }
 
-        // 3. Güvenli Çıkış (Logout)
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync("MyCookieAuth");

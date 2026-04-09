@@ -66,43 +66,55 @@
 
     <hr class="my-5 border-secondary" style="border-width: 3px; opacity: 0.5;" />
 
-    <!-- 2. KISIM: Gelen Mesajlar Bölümü -->
-    <div class="mt-5 mb-5">
-        <h2 class="text-warning mb-4"><i class="fas fa-envelope"></i> 📩 Gelen İletişim Mesajları</h2>
-        <div class="table-responsive shadow-lg rounded bg-white p-2">
-            <table class="table table-hover align-middle mb-0">
-                <thead class="table-dark">
-                    <tr>
-                        <th style="width: 50px;">#</th>
-                        <th style="width: 150px;">Gönderen</th>
-                        <th style="width: 200px;">E-posta</th>
-                        <th>Konu</th>
-                        <th>Mesaj</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (ViewBag.Messages != null && ((List<PortfolyoProjesi.Models.ContactMessage>)ViewBag.Messages).Any())
+<!-- 2. KISIM: Gelen Mesajlar Bölümü -->
+<div class="mt-5 mb-5">
+    <h2 class="text-warning mb-4"><i class="fas fa-envelope"></i> 📩 Gelen İletişim Mesajları</h2>
+    <div class="table-responsive shadow-lg rounded bg-white p-2">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th style="width: 50px;">#</th>
+                    <th>Tarih</th>
+                    <th>Gönderen</th>
+                    <th>Konu</th>
+                    <th>Mesaj</th>
+                    <th class="text-center">İşlemler</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (ViewBag.Messages != null)
+                {
+                    @foreach (var msg in (List<PortfolyoProjesi.Models.ContactMessage>)ViewBag.Messages)
                     {
-                        @foreach (var msg in (List<PortfolyoProjesi.Models.ContactMessage>)ViewBag.Messages)
-                        {
-                            <tr>
-                                <td class="fw-bold text-muted">@msg.Id</td>
-                                <td><span class="badge bg-primary px-3 py-2">@msg.Name</span></td>
-                                <td><a href="mailto:@msg.Email" class="text-decoration-none text-info">@msg.Email</a></td>
-                                <td class="fw-bold">@msg.Subject</td>
-                                <td class="text-muted" style="font-size: 0.9rem;">@msg.Message</td>
-                            </tr>
-                        }
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="5" class="text-center py-4 text-muted italic">Henüz bir mesaj alınmadı.</td>
+                        <!-- Okunmamış mesajların arkasını hafif renkli yapalım -->
+                        <tr class="@(msg.IsRead ? "" : "table-warning")">
+                            <td class="fw-bold text-muted">@msg.Id</td>
+                            <td style="font-size: 0.85rem;">@msg.CreatedDate.ToString("dd.MM.yyyy HH:mm")</td>
+                            <td>
+                                <span class="@(msg.IsRead ? "text-dark" : "fw-bold text-primary")">@msg.Name</span>
+                            </td>
+                            <td>@msg.Subject</td>
+                            <td class="text-muted" style="font-size: 0.9rem;">@msg.Message</td>
+                            <td class="text-center">
+                                <div class="btn-group">
+                                    @if (!msg.IsRead)
+                                    {
+                                        <a asp-action="MarkAsRead" asp-route-id="@msg.Id" class="btn btn-sm btn-outline-success" title="Okundu İşaretle">
+                                            ✅
+                                        </a>
+                                    }
+                                    <a asp-action="DeleteMessage" asp-route-id="@msg.Id" 
+                                       class="btn btn-sm btn-outline-danger" 
+                                       onclick="return confirm('Bu mesajı silmek istediğine emin misin?')" title="Mesajı Sil">
+                                        🗑️
+                                    </a>
+                                </div>
+                            </td>
                         </tr>
                     }
-                </tbody>
-            </table>
-        </div>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
 
