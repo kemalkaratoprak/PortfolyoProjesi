@@ -24,7 +24,7 @@ namespace PortfolyoProjesi.Controllers
             return View(projects);
         }
 
-        // --- YENİ EKLENEN MESAJ YÖNETİM METODLARI ---
+        // --- MESAJ YÖNETİM METODLARI ---
 
         [Authorize(AuthenticationSchemes = "MyCookieAuth")]
         public IActionResult DeleteMessage(int id)
@@ -58,18 +58,32 @@ namespace PortfolyoProjesi.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(string username, string password)
         {
-            if (username == "admin" && password == "Kemal123!")
+            // Değişkenleri Render panelindeki Environment Variables kısmından çekiyoruz
+            var adminUser = Environment.GetEnvironmentVariable("ADMIN_USER");
+            var adminPass = Environment.GetEnvironmentVariable("ADMIN_PASS");
+
+            // Güvenlik Kontrolü: Bilgiler eşleşiyor mu ve sistem değişkenleri boş değil mi?
+            if (!string.IsNullOrEmpty(adminUser) && username == adminUser && password == adminPass)
             {
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, username),
                     new Claim(ClaimTypes.Role, "Admin")
                 };
+
                 var claimsIdentity = new ClaimsIdentity(claims, "MyCookieAuth");
-                await HttpContext.SignInAsync("MyCookieAuth", new ClaimsPrincipal(claimsIdentity));
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = true // Tarayıcı kapatılsa da oturum hatırlanır
+                };
+
+                await HttpContext.SignInAsync("MyCookieAuth", new ClaimsPrincipal(claimsIdentity), authProperties);
+
                 return RedirectToAction("Index", "Admin");
             }
-            ViewBag.Error = "Hatalı giriş!";
+
+            // Hata durumunda mesaj gönder
+            ViewBag.Error = "Kullanıcı adı veya şifre hatalı!";
             return View();
         }
 
