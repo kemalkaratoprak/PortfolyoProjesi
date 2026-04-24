@@ -216,6 +216,20 @@
                         <div class="card-body p-4">
                             <h5 class="card-title text-info">@proje.Title</h5>
                             <p class="text-white-50 small">@proje.Description</p>
+                            <div class="d-flex gap-2 mt-3">
+                                @if (!string.IsNullOrEmpty(proje.GithubUrl))
+                                {
+                                    <a href="@proje.GithubUrl" target="_blank" class="btn btn-sm btn-outline-light">
+                                        <i class="fab fa-github"></i> GitHub
+                                    </a>
+                                }
+                                @if (!string.IsNullOrEmpty(proje.LiveUrl))
+                                {
+                                    <a href="@proje.LiveUrl" target="_blank" class="btn btn-sm btn-info fw-bold">
+                                        <i class="bi bi-globe"></i> Canlı Gör
+                                    </a>
+                                }
+                            </div>    
                         </div>
                     </div>
                 </div>

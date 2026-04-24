@@ -9,6 +9,15 @@
         <div class="col-md-6 shadow-lg p-4 rounded bg-dark text-white border border-info">
             <h2 class="text-center mb-4 text-info fw-bold">🚀 Yeni Proje Ekle</h2>
             <form asp-action="Create" method="post">
+                <div class="form-group mb-3">
+                    <label class="control-label text-info fw-bold">GitHub Linki</label>
+                    <input name="GithubUrl" class="form-control bg-dark text-white border-secondary" placeholder="https://github.com/kullanici/proje" />
+                </div>
+
+                <div class="form-group mb-3">
+                    <label class="control-label text-info fw-bold">Canlı Demo Linki</label>
+                    <input name="LiveUrl" class="form-control bg-dark text-white border-secondary" placeholder="https://proje-demo.com" />
+                </div>
                 <div class="mb-3">
                     <label class="form-label fw-bold text-info">Proje Başlığı</label>
                     <input asp-for="Title" class="form-control bg-dark text-white border-secondary" placeholder="Örn: E-Ticaret Uygulaması" required />

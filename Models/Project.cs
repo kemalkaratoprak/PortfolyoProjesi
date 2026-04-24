@@ -4,13 +4,19 @@ namespace PortfolyoProjesi.Models
 {
     public class Project
     {
-        [Key] // Bu alanın birincil anahtar (Primary Key) olduğunu belirtir
+        [Key]
         public int Id { get; set; }
 
-        public string Title { get; set; } // Projenin Başlığı
+        public string Title { get; set; }
 
-        public string Description { get; set; } // Projenin Açıklaması
+        public string Description { get; set; }
 
-        public string ImageUrl { get; set; } // Projenin Görsel Linki
+        public string ImageUrl { get; set; }
+
+        // --- YENİ EKLENEN ALANLAR ---
+        
+        public string? GithubUrl { get; set; } // GitHub kaynak kod linki
+
+        public string? LiveUrl { get; set; }   // Varsa canlı site linki
     }
 }
