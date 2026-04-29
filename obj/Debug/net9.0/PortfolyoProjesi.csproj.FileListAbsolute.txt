@@ -82,12 +82,6 @@ C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\compressed\p
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\staticwebassets.development.json
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\staticwebassets\msbuild.PortfolyoProjesi.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\staticwebassets\msbuild.PortfolyoProjesi.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\staticwebassets\msbuild.build.PortfolyoProjesi.props
-C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.PortfolyoProjesi.props
-C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.PortfolyoProjesi.props
-C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\staticwebassets.pack.json
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\PortfolyoProjesi.dll
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\refint\PortfolyoProjesi.dll
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\PortfolyoProjesi.pdb
@@ -219,3 +213,8 @@ C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\Portfoly.44E
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\PortfolyoProjesi.sourcelink.json
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\compressed\6229x97q27-2aa7ow0ypk.gz
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\compressed\9iqhmgjcjf-7bgu2qwpxv.gz
+C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\rjimswa.dswa.cache.json
+C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\staticwebassets.build.json.cache

@@ -70,12 +70,13 @@
 <div class="mt-5 mb-5">
     <h2 class="text-warning mb-4"><i class="fas fa-envelope"></i> 📩 Gelen İletişim Mesajları</h2>
     <div class="table-responsive shadow-lg rounded bg-white p-2">
-        <table class="table table-hover align-middle mb-0">
+        <table class="table table-table-hover align-middle mb-0">
             <thead class="table-dark">
                 <tr>
                     <th style="width: 50px;">#</th>
                     <th>Tarih</th>
                     <th>Gönderen</th>
+                    <th>E-posta</th>
                     <th>Konu</th>
                     <th>Mesaj</th>
                     <th class="text-center">İşlemler</th>
@@ -84,34 +85,36 @@
             <tbody>
                 @if (ViewBag.Messages != null)
                 {
+                    int sayac = 1;
                     @foreach (var msg in (List<PortfolyoProjesi.Models.ContactMessage>)ViewBag.Messages)
                     {
-                        <!-- Okunmamış mesajların arkasını hafif renkli yapalım -->
                         <tr class="@(msg.IsRead ? "" : "table-warning")">
-                            <td class="fw-bold text-muted">@msg.Id</td>
+                            <td>@sayac</td>
                             <td style="font-size: 0.85rem;">@msg.CreatedDate.ToString("dd.MM.yyyy HH:mm")</td>
                             <td>
-                                <span class="@(msg.IsRead ? "text-dark" : "fw-bold text-primary")">@msg.Name</span>
+                                <span class="fw-bold @(msg.IsRead ? "text-dark" : "text-primary")">@msg.Name</span>
                             </td>
-                            <td>@msg.Subject</td>
+                            <td class="text-info small">@msg.Email</td>
+                            <td class="fw-bold">@msg.Subject</td>
                             <td class="text-muted" style="font-size: 0.9rem;">@msg.Message</td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     @if (!msg.IsRead)
                                     {
-                                        <a asp-action="MarkAsRead" asp-route-id="@msg.Id" class="btn btn-sm btn-outline-success" title="Okundu İşaretle">
-                                            ✅
-                                        </a>
+                                        <a asp-action="MarkAsRead" asp-route-id="@msg.Id" class="btn btn-sm btn-outline-success">✅</a>
                                     }
-                                    <a asp-action="DeleteMessage" asp-route-id="@msg.Id" 
-                                       class="btn btn-sm btn-outline-danger" 
-                                       onclick="return confirm('Bu mesajı silmek istediğine emin misin?')" title="Mesajı Sil">
-                                        🗑️
-                                    </a>
+                                    <a asp-action="DeleteMessage" asp-route-id="@msg.Id" class="btn btn-sm btn-outline-danger" onclick="return confirm('Silinsin mi?')">🗑️</a>
                                 </div>
                             </td>
                         </tr>
+                        sayac++;
                     }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7" class="text-center">Henüz bir mesaj bulunmuyor.</td>
+                    </tr>
                 }
             </tbody>
         </table>
