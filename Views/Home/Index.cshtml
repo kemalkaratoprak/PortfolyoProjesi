@@ -4,7 +4,6 @@
     ViewData["Title"] = "Yazılım Geliştirici Portfolyosu";
 }
 
-<!-- Hero Section -->
 <header class="py-5 mb-5" style="background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%); border-radius: 20px; border: 1px solid #333;">
     <div class="container px-5">
         <div class="row gx-5 align-items-center justify-content-center">
@@ -22,7 +21,6 @@
     </div>
 </header>
 
-<!-- Hakkımda Bölümü -->
 <section class="py-5 bg-dark" id="about">
     <div class="container px-5 my-5">
         <div class="row gx-5 align-items-center">
@@ -68,7 +66,6 @@
     </div>
 </section>
 
-<!-- Teknik Yetkinlikler Bölümü -->
 <section class="py-5 bg-dark border-bottom border-secondary mb-5">
     <div class="container px-5">
         <div class="text-center mb-5">
@@ -203,7 +200,6 @@
     }
 </style>
 
-<!-- Projeler Bölümü -->
 <section id="projects" class="py-5 bg-dark">
     <div class="container px-4">
         <h2 class="fw-bolder mb-5 text-center text-info">Öne Çıkan Çalışmalarım</h2>
@@ -238,7 +234,6 @@
     </div>
 </section>
 
-<!-- İletişim Bölümü -->
 <section class="py-5 bg-dark" id="contact">
     <div class="container px-5">
         <div class="bg-secondary rounded-4 py-5 px-4 px-md-5 shadow-lg border border-info">
@@ -252,6 +247,12 @@
             <div class="row gx-5 justify-content-center">
                 <div class="col-lg-8 col-xl-6">
                     <form asp-action="SendMessage" asp-controller="Home" method="post">
+                        
+                        <div style="position: absolute; left: -9999px;" aria-hidden="true">
+                            <label for="Website">Website Adresiniz</label>
+                            <input type="text" name="Website" id="Website" tabindex="-1" autocomplete="off" />
+                        </div>
+
                         <div class="form-floating mb-3">
                             <input class="form-control bg-dark text-white border-secondary" name="Name" id="name" type="text" placeholder="Ad Soyad" required />
                             <label for="name">Ad Soyad</label>

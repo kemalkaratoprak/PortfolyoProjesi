@@ -21,24 +21,26 @@ namespace PortfolyoProjesi.Controllers
         }
 
         // --- İLETİŞİM FORMU VE MAİL GÖNDERME METODU ---
-                [HttpPost]
-        public async Task<IActionResult> SendMessage(ContactMessage model)
+        [HttpPost]
+        public IActionResult SendMessage(ContactMessage model, string Website)
         {
-            if (ModelState.IsValid)
+            // 1. HONEYPOT KONTROLÜ: Eğer "Website" alanı doluysa, bu kesinlikle bir bottur.
+            if (!string.IsNullOrEmpty(Website))
             {
-                // 1. Sadece Veritabanına Kaydediyoruz
-                _context.ContactMessages.Add(model);
-                await _context.SaveChangesAsync();
-
-                // 2. Kullanıcıya başarı mesajı veriyoruz
-                TempData["MessageSent"] = "Mesajınız başarıyla iletildi!";
-                
-                // 3. Hiç beklemeden ana sayfaya dönüyoruz
-                return RedirectToAction("Index");
+                // Botu kandırıyoruz! Veritabanına hiçbir şey KAYDETMİYORUZ ama bota "başarılı" mesajı döndürüyoruz ki sistemi zorlamaya devam etmesin.
+                TempData["MessageSent"] = "Mesajınız başarıyla gönderildi.";
+                return RedirectToAction("Index", "Home"); 
             }
 
-            // Model geçerli değilse sayfaya geri dön
-            return RedirectToAction("Index");
+            // 2. NORMAL KAYIT İŞLEMİ (Eğer Website boşsa, yani insansa burası çalışır)
+            if (ModelState.IsValid)
+            {
+                _context.ContactMessages.Add(model);
+                _context.SaveChanges();
+                TempData["MessageSent"] = "Mesajınız başarıyla gönderildi.";
+            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         // --- PROJE İŞLEMLERİ ---
