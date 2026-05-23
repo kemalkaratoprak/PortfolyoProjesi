@@ -16,6 +16,14 @@ namespace PortfolyoProjesi.Controllers
 
         public IActionResult Index()
         {
+            var counter = _context.VisitorCounters.FirstOrDefault();
+            if (counter != null)
+            {
+                counter.TotalVisits++;
+                _context.SaveChanges();
+                // Sadece artırıp kaydediyoruz, ViewBag kısmını sildik.
+            }
+
             var projects = _context.Projects.ToList();
             return View(projects);
         }

@@ -19,8 +19,14 @@ namespace PortfolyoProjesi.Controllers
         public IActionResult Index()
         {
             var projects = _context.Projects.ToList();
+            
             // Mesajları tarihe göre (en yeni en üstte) çekiyoruz
             ViewBag.Messages = _context.ContactMessages.OrderByDescending(m => m.CreatedDate).ToList();
+
+            // Ziyaretçi sayısını veritabanından çekip Admin paneline gönderiyoruz (229. Adım)
+            var counter = _context.VisitorCounters.FirstOrDefault();
+            ViewBag.TotalVisits = counter != null ? counter.TotalVisits : 0;
+
             return View(projects);
         }
 

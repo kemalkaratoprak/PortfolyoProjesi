@@ -5,7 +5,6 @@
 }
 
 <div class="container mt-5">
-    <!-- Üst Başlık ve Hızlı Aksiyonlar -->
     <div class="d-flex justify-content-between align-items-center mb-4 bg-dark p-4 rounded shadow-lg border border-secondary">
         <div>
             <h2 class="text-info fw-bold mb-0">🛠️ Proje Yönetim Paneli</h2>
@@ -18,7 +17,23 @@
         </div>
     </div>
 
-    <!-- 1. KISIM: Proje Tablosu -->
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="card bg-info text-dark shadow border-0 rounded-4" style="transition: transform 0.3s; cursor: default;" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+                <div class="card-body d-flex align-items-center justify-content-between p-4">
+                    <div>
+                        <h6 class="card-title mb-1 fw-bold text-uppercase opacity-75" style="font-size: 0.8rem; letter-spacing: 1px;">Toplam Ziyaretçi</h6>
+                        <h2 class="mb-0 fw-bolder display-5">@ViewBag.TotalVisits</h2>
+                    </div>
+                    <div class="bg-white bg-opacity-25 p-3 rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                        <i class="fas fa-eye fs-2"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        </div>
+
     <div class="table-responsive shadow-lg rounded border border-secondary mb-5">
         <table class="table table-dark table-hover align-middle mb-0">
             <thead class="table-secondary text-dark">
@@ -66,63 +81,62 @@
 
     <hr class="my-5 border-secondary" style="border-width: 3px; opacity: 0.5;" />
 
-<!-- 2. KISIM: Gelen Mesajlar Bölümü -->
-<div class="mt-5 mb-5">
-    <h2 class="text-warning mb-4"><i class="fas fa-envelope"></i> 📩 Gelen İletişim Mesajları</h2>
-    <div class="table-responsive shadow-lg rounded bg-white p-2">
-        <table class="table table-table-hover align-middle mb-0">
-            <thead class="table-dark">
-                <tr>
-                    <th style="width: 50px;">#</th>
-                    <th>Tarih</th>
-                    <th>Gönderen</th>
-                    <th>E-posta</th>
-                    <th>Konu</th>
-                    <th>Mesaj</th>
-                    <th class="text-center">İşlemler</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (ViewBag.Messages != null)
-                {
-                    int sayac = 1;
-                    @foreach (var msg in (List<PortfolyoProjesi.Models.ContactMessage>)ViewBag.Messages)
-                    {
-                        <tr class="@(msg.IsRead ? "" : "table-warning")">
-                            <td>@sayac</td>
-                            <td style="font-size: 0.85rem;">@msg.CreatedDate.ToString("dd.MM.yyyy HH:mm")</td>
-                            <td>
-                                <span class="fw-bold @(msg.IsRead ? "text-dark" : "text-primary")">@msg.Name</span>
-                            </td>
-                            <td class="text-info small">@msg.Email</td>
-                            <td class="fw-bold">@msg.Subject</td>
-                            <td class="text-muted" style="font-size: 0.9rem;">@msg.Message</td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    @if (!msg.IsRead)
-                                    {
-                                        <a asp-action="MarkAsRead" asp-route-id="@msg.Id" class="btn btn-sm btn-outline-success">✅</a>
-                                    }
-                                    <a asp-action="DeleteMessage" asp-route-id="@msg.Id" class="btn btn-sm btn-outline-danger" onclick="return confirm('Silinsin mi?')">🗑️</a>
-                                </div>
-                            </td>
-                        </tr>
-                        sayac++;
-                    }
-                }
-                else
-                {
+    <div class="mt-5 mb-5">
+        <h2 class="text-warning mb-4"><i class="fas fa-envelope"></i> 📩 Gelen İletişim Mesajları</h2>
+        <div class="table-responsive shadow-lg rounded bg-white p-2">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
                     <tr>
-                        <td colspan="7" class="text-center">Henüz bir mesaj bulunmuyor.</td>
+                        <th style="width: 50px;">#</th>
+                        <th>Tarih</th>
+                        <th>Gönderen</th>
+                        <th>E-posta</th>
+                        <th>Konu</th>
+                        <th>Mesaj</th>
+                        <th class="text-center">İşlemler</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @if (ViewBag.Messages != null)
+                    {
+                        int sayac = 1;
+                        @foreach (var msg in (List<PortfolyoProjesi.Models.ContactMessage>)ViewBag.Messages)
+                        {
+                            <tr class="@(msg.IsRead ? "" : "table-warning")">
+                                <td>@sayac</td>
+                                <td style="font-size: 0.85rem;">@msg.CreatedDate.ToString("dd.MM.yyyy HH:mm")</td>
+                                <td>
+                                    <span class="fw-bold @(msg.IsRead ? "text-dark" : "text-primary")">@msg.Name</span>
+                                </td>
+                                <td class="text-info small">@msg.Email</td>
+                                <td class="fw-bold">@msg.Subject</td>
+                                <td class="text-muted" style="font-size: 0.9rem;">@msg.Message</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                        @if (!msg.IsRead)
+                                        {
+                                            <a asp-action="MarkAsRead" asp-route-id="@msg.Id" class="btn btn-sm btn-outline-success">✅</a>
+                                        }
+                                        <a asp-action="DeleteMessage" asp-route-id="@msg.Id" class="btn btn-sm btn-outline-danger" onclick="return confirm('Silinsin mi?')">🗑️</a>
+                                    </div>
+                                </td>
+                            </tr>
+                            sayac++;
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="7" class="text-center">Henüz bir mesaj bulunmuyor.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
 <style>
-    /* Admin paneli için sayfa arkası biraz daha koyu olsun */
     body {
         background-color: #1a1a1a;
         color: white;
@@ -133,5 +147,8 @@
     }
     .table-hover tbody tr:hover {
         background-color: rgba(255,255,255,0.05);
+    }
+    .rounded-4 {
+        border-radius: 1rem !important;
     }
 </style>

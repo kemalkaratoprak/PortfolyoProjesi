@@ -13,5 +13,7 @@ namespace PortfolyoProjesi.Models
 
         // İletişim mesajları tablosu (BU SATIRI EKLEDİK)
         public DbSet<ContactMessage> ContactMessages { get; set; }
+        // Ziyaretçi sayacı tablosu (BU SATIRI EKLEDİK)
+        public DbSet<VisitorCounter> VisitorCounters { get; set; }
     }
 }
