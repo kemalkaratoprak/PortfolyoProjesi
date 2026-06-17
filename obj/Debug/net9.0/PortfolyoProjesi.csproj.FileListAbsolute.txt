@@ -218,3 +218,5 @@ C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\rjsmrazor.ds
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\compressed\6229x97q27-l3w5kqlmyd.gz
+C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\compressed\8txo742y7c-oz1xi2wl1s.gz
+C:\Users\MONSTER\OneDrive\Desktop\PortfolyoProjesi\obj\Debug\net9.0\compressed\2iirv806d2-spx7zpxjh8.gz
