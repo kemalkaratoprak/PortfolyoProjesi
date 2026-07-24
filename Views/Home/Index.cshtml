@@ -241,8 +241,20 @@
                 <h2 class="fw-bolder text-white">Bana Ulaşın</h2>
                 @if (TempData["MessageSent"] != null)
                 {
-                    <div class="alert alert-success mt-3">@TempData["MessageSent"]</div>
-                }
+                    <script>
+                        document.addEventListener("DOMContentLoaded", function() {
+                            Swal.fire({
+                                title: 'Başarılı!',
+                                text: '@Html.Raw(TempData["MessageSent"])',
+                                icon: 'success',
+                                confirmButtonText: 'Tamam',
+                                confirmButtonColor: '#0dcaf0', /* Senin temanın ana mavi rengi */
+                                background: '#212529', /* Sitenle uyumlu Dark Mode arka planı */
+                                color: '#ffffff' /* Yazı rengi beyaz */
+                            });
+                        });
+                    </script>
+                }         
             </div>
             <div class="row gx-5 justify-content-center">
                 <div class="col-lg-8 col-xl-6">
