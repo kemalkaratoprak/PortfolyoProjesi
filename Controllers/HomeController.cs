@@ -29,7 +29,7 @@ namespace PortfolyoProjesi.Controllers
         }
 
         [HttpPost]
-        public IActionResult SendMessage(ContactMessage model, string CatchSpamTrap)
+        public IActionResult SendMessage(ContactMessage model, string? CatchSpamTrap) // DİKKAT: string yanına soru işareti (?) koyduk
         {
             // 1. KİM ENGELLİYOR: HONEYPOT (BOT KORUMASI) MU?
             if (!string.IsNullOrEmpty(CatchSpamTrap))
@@ -38,21 +38,23 @@ namespace PortfolyoProjesi.Controllers
                 return RedirectToAction("Index", "Home"); 
             }
 
+            // 2. GÜVENLİK DUVARI (MODELSTATE) TEMİZLİĞİ
             // Doğrulamadan muaf tuttuğumuz alanlar
             ModelState.Remove("Id");
             ModelState.Remove("CreatedDate");
             ModelState.Remove("IsRead");
+            ModelState.Remove("CatchSpamTrap"); // Honeypot'u da doğrulama dışı bırakıyoruz ki zorunlu sanmasın
 
-            // 2. KİM ENGELLİYOR: MODELSTATE (EKSİK VERİ) Mİ?
+            // 3. NORMAL KAYIT İŞLEMİ 
             if (ModelState.IsValid)
             {
                 _context.ContactMessages.Add(model);
                 _context.SaveChanges();
-                TempData["MessageSent"] = "Mesajınız başarıyla gönderildi.";
+                TempData["MessageSent"] = "Mesajınız başarıyla gönderildi."; // Başarılı mesajını eski haline getirdik
             }
             else
             {
-                // Eğer form hatalıysa, hatanın TAM OLARAK ne olduğunu cımbızla çekip ekrana yolluyoruz
+                // Ne olur ne olmaz, başka bir eksik varsa yine ekranda görelim
                 var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
                 TempData["MessageSent"] = "C# HATASI: " + string.Join(" | ", errors);
             }
