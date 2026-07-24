@@ -31,25 +31,30 @@ namespace PortfolyoProjesi.Controllers
         [HttpPost]
         public IActionResult SendMessage(ContactMessage model, string CatchSpamTrap)
         {
-            // 1. HONEYPOT KONTROLÜ: Anlamsız isimli alan doluysa, bu kesinlikle bir bottur.
+            // 1. KİM ENGELLİYOR: HONEYPOT (BOT KORUMASI) MU?
             if (!string.IsNullOrEmpty(CatchSpamTrap))
             {
-                TempData["MessageSent"] = "Mesajınız başarıyla gönderildi.";
+                TempData["MessageSent"] = "HATA: Tarayıcın gizli alanı doldurduğu için sistem seni Spam Bot sandı!";
                 return RedirectToAction("Index", "Home"); 
             }
 
-            // 2. GÜVENLİK DUVARI (MODELSTATE) TEMİZLİĞİ
-            // Ziyaretçinin formda doldurmayacağı, sistemin otomatik atadığı alanları doğrulamadan çıkarıyoruz.
+            // Doğrulamadan muaf tuttuğumuz alanlar
             ModelState.Remove("Id");
             ModelState.Remove("CreatedDate");
             ModelState.Remove("IsRead");
 
-            // 3. NORMAL KAYIT İŞLEMİ 
+            // 2. KİM ENGELLİYOR: MODELSTATE (EKSİK VERİ) Mİ?
             if (ModelState.IsValid)
             {
                 _context.ContactMessages.Add(model);
                 _context.SaveChanges();
                 TempData["MessageSent"] = "Mesajınız başarıyla gönderildi.";
+            }
+            else
+            {
+                // Eğer form hatalıysa, hatanın TAM OLARAK ne olduğunu cımbızla çekip ekrana yolluyoruz
+                var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
+                TempData["MessageSent"] = "C# HATASI: " + string.Join(" | ", errors);
             }
 
             return RedirectToAction("Index", "Home");
