@@ -106,3 +106,14 @@ body {
     transform: translateY(-10px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7) !important;
 }
+
+/* İkonların normal haline yumuşak geçiş süresi veriyoruz (fareyi çekince de yavaşça eski haline dönsün diye) */
+.transform-hover .bi {
+    transition: transform 0.5s ease-in-out;
+    display: inline-block; /* Dönüş hareketinin pürüzsüz olması için bu şarttır */
+}
+
+/* Karta fareyle gelindiğinde içindeki .bi class'lı ikonun yapacağı hareket */
+.transform-hover:hover .bi {
+    transform: rotate(360deg) scale(1.2); /* 360 derece döner ve %20 büyür */
+}
