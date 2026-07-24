@@ -29,6 +29,7 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
 /* --- Splash Screen Tasarımı --- */
 #splash-screen {
     position: fixed;
@@ -40,7 +41,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10000; /* Her şeyin (Navbar dahil) üstünde olması için */
+    z-index: 10000;
     opacity: 1;
     transition: opacity 0.8s ease-out, visibility 0.8s;
 }
@@ -64,7 +65,7 @@ body {
 }
 
 .splash-logo span {
-    color: #0dcaf0; /* Senin meşhur mavi rengin */
+    color: #0dcaf0; 
 }
 
 .splash-loader {
@@ -94,4 +95,14 @@ body {
 @keyframes loading {
     0% { left: -100%; }
     100% { left: 100%; }
+}
+
+/* --- Hover (Yukarı Kayma) Animasyonu --- */
+.transform-hover {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.transform-hover:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7) !important;
 }
