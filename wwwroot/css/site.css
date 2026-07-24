@@ -117,3 +117,20 @@ body {
 .transform-hover:hover .bi {
     transform: rotate(360deg) scale(1.2); /* 360 derece döner ve %20 büyür */
 }
+
+/* Sitedeki tüm butonlara genel bir yumuşak geçiş süresi atıyoruz */
+.btn {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Fareyle butonun üstüne gelindiğinde (buton hafifçe yukarı kalkar ve gölge yayar) */
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Butona tıklandığı an (buton fiziksel olarak aşağı basılıyormuş gibi hissettirir) */
+.btn:active {
+    transform: translateY(1px) !important; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3) !important;
+}
