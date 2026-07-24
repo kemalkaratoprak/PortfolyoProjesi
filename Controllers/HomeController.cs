@@ -28,7 +28,6 @@ namespace PortfolyoProjesi.Controllers
             return View(projects);
         }
 
-        // --- İLETİŞİM FORMU VE MAİL GÖNDERME METODU ---
         [HttpPost]
         public IActionResult SendMessage(ContactMessage model, string CatchSpamTrap)
         {
@@ -39,7 +38,13 @@ namespace PortfolyoProjesi.Controllers
                 return RedirectToAction("Index", "Home"); 
             }
 
-            // 2. NORMAL KAYIT İŞLEMİ (Eğer Website boşsa, yani insansa burası çalışır)
+            // 2. GÜVENLİK DUVARI (MODELSTATE) TEMİZLİĞİ
+            // Ziyaretçinin formda doldurmayacağı, sistemin otomatik atadığı alanları doğrulamadan çıkarıyoruz.
+            ModelState.Remove("Id");
+            ModelState.Remove("CreatedDate");
+            ModelState.Remove("IsRead");
+
+            // 3. NORMAL KAYIT İŞLEMİ 
             if (ModelState.IsValid)
             {
                 _context.ContactMessages.Add(model);
