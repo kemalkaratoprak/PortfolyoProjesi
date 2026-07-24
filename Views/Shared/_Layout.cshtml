@@ -155,5 +155,36 @@
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Yukarı Çık Butonu -->
+    <button type="button" class="btn btn-info btn-lg shadow-lg" id="btn-back-to-top" style="position: fixed; bottom: 30px; right: 30px; display: none; z-index: 99; border-radius: 50%; width: 55px; height: 55px; transition: transform 0.3s ease;">
+        <i class="bi bi-arrow-up text-dark fs-4" style="line-height: 1;"></i>
+    </button>
+
+    <script>
+        // Yukarı Çık Butonu İşlevselliği
+        let mybutton = document.getElementById("btn-back-to-top");
+
+        // Kullanıcı sayfayı 100px aşağı kaydırdığında butonu göster
+        window.onscroll = function () {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        };
+
+        // Butona tıklandığında sayfanın en üstüne pürüzsüzce çık
+        mybutton.addEventListener("click", function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Butona Hover Efekti (Fareyle gelince hafif büyümesi için)
+        mybutton.addEventListener("mouseover", function() {
+            this.style.transform = "scale(1.1)";
+        });
+        mybutton.addEventListener("mouseout", function() {
+            this.style.transform = "scale(1)";
+        });
+    </script>
 </body>
 </html>
