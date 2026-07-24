@@ -30,12 +30,11 @@ namespace PortfolyoProjesi.Controllers
 
         // --- İLETİŞİM FORMU VE MAİL GÖNDERME METODU ---
         [HttpPost]
-        public IActionResult SendMessage(ContactMessage model, string Website)
+        public IActionResult SendMessage(ContactMessage model, string CatchSpamTrap)
         {
-            // 1. HONEYPOT KONTROLÜ: Eğer "Website" alanı doluysa, bu kesinlikle bir bottur.
-            if (!string.IsNullOrEmpty(Website))
+            // 1. HONEYPOT KONTROLÜ: Anlamsız isimli alan doluysa, bu kesinlikle bir bottur.
+            if (!string.IsNullOrEmpty(CatchSpamTrap))
             {
-                // Botu kandırıyoruz! Veritabanına hiçbir şey KAYDETMİYORUZ ama bota "başarılı" mesajı döndürüyoruz ki sistemi zorlamaya devam etmesin.
                 TempData["MessageSent"] = "Mesajınız başarıyla gönderildi.";
                 return RedirectToAction("Index", "Home"); 
             }
