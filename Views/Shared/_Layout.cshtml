@@ -121,11 +121,21 @@
         </main>
     </div>
 
-    <footer class="footer mt-auto py-3 text-muted border-top">
-        <div class="container text-center">
-            <span class="text-white-50">&copy; 2026 - <b class="text-info">KEMAL KARATOPRAK</b></span>
-            <span class="mx-2">|</span>
-            <a asp-area="" asp-controller="Home" asp-action="Privacy" class="text-decoration-none text-info">Gizlilik Politikası</a>
+    <!-- Footer (Alt Bilgi) -->
+    <footer class="bg-dark py-4 mt-auto border-top border-secondary">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto">
+                    <div class="small m-0 text-white-50">
+                        &copy; @DateTime.Now.Year <span class="text-info fw-bold">Kemal Karatoprak</span>. Tüm Hakları Saklıdır.
+                    </div>
+                </div>
+                <div class="col-auto mt-3 mt-sm-0">
+                    <a class="link-light text-decoration-none me-3" href="https://github.com/kemalkaratoprak" target="_blank"><i class="fab fa-github fs-5"></i></a>
+                    <a class="link-light text-decoration-none me-3" href="https://linkedin.com/in/kemalkaratoprak" target="_blank"><i class="fab fa-linkedin fs-5"></i></a>
+                    <a class="link-light text-decoration-none" href="https://x.com/kemalk27" target="_blank"><i class="fab fa-x-twitter fs-5"></i></a>
+                </div>
+            </div>
         </div>
     </footer>
 
