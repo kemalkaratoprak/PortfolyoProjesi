@@ -25,9 +25,12 @@
     <div class="container px-5 my-5">
         <div class="row gx-5 align-items-center">
             <div class="col-lg-5 text-center mb-5 mb-lg-0">
+                <!-- STORY ÖZELLİKLİ PROFİL RESMİ -->
                 <div class="position-relative d-inline-block">
-                    <img class="img-fluid rounded-circle shadow-lg border border-info p-2" src="~/img/profil.jpeg" alt="Kemal Karatoprak" style="width: 280px; height: 280px; object-fit: cover;" />
-                    <div class="position-absolute bottom-0 end-0 bg-info text-dark p-2 rounded-circle shadow">
+                    <div class="story-ring p-1 rounded-circle shadow-lg" style="background: linear-gradient(45deg, #0dcaf0, #0d6efd, #6610f2); cursor: pointer;" id="profileImage" title="Hikayeyi Gör">
+                        <img class="img-fluid rounded-circle border border-dark border-4 bg-dark" src="~/img/profil.jpeg" alt="Kemal Karatoprak" style="width: 280px; height: 280px; object-fit: cover;" />
+                    </div>
+                    <div class="position-absolute bottom-0 end-0 bg-info text-dark p-2 rounded-circle shadow" style="z-index: 5;">
                         <span class="fw-bold">🚀👨‍💻</span>
                     </div>
                 </div>
@@ -158,48 +161,6 @@
     </div>
 </section>
 
-<style>
-    .transform-hover {
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        will-change: transform, box-shadow;
-        backface-visibility: hidden;
-    }
-
-    .transform-hover:hover {
-        transform: translateY(-8px) scale(1.01);
-        box-shadow: 0 15px 30px rgba(13, 202, 240, 0.15) !important;
-        border-color: #0dcaf0 !important;
-    }
-
-    .social-icon {
-        transition: transform 0.3s ease, color 0.3s ease;
-        display: inline-block;
-        text-decoration: none !important;
-        outline: none !important;
-    }
-
-    .social-icon:hover {
-        transform: translateY(-5px);
-        color: inherit;
-    }
-
-    .fa-github:hover { color: #6e5494 !important; }
-    .fa-linkedin:hover { color: #0077b5 !important; }
-    .fa-x-twitter:hover { color: #ffffff !important; }
-
-    /* İkonları Merkeze Alan Kritik Bölüm */
-    .feature {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-
-    .feature i {
-        line-height: 0;
-        display: inline-block;
-    }
-</style>
-
 <section id="projects" class="py-5 bg-dark">
     <div class="container px-4">
         <h2 class="fw-bolder mb-5 text-center text-info">Öne Çıkan Çalışmalarım</h2>
@@ -248,13 +209,13 @@
                                 text: '@Html.Raw(TempData["MessageSent"])',
                                 icon: 'success',
                                 confirmButtonText: 'Tamam',
-                                confirmButtonColor: '#0dcaf0', /* Senin temanın ana mavi rengi */
-                                background: '#212529', /* Sitenle uyumlu Dark Mode arka planı */
-                                color: '#ffffff' /* Yazı rengi beyaz */
+                                confirmButtonColor: '#0dcaf0',
+                                background: '#212529',
+                                color: '#ffffff'
                             });
                         });
                     </script>
-                }         
+                }        
             </div>
             <div class="row gx-5 justify-content-center">
                 <div class="col-lg-8 col-xl-6">
@@ -288,3 +249,192 @@
         </div>
     </div>
 </section>
+
+<!-- STORY MODAL HTML & CSS -->
+<div id="storyModal" class="story-modal">
+    <div class="story-content shadow-lg">
+        <div class="story-progress-container">
+            <div id="storyProgressBar" class="story-progress-bar"></div>
+        </div>
+        
+        <img src="~/img/profil.jpeg" alt="Story" class="story-image" />
+        
+        <button id="closeStory" class="close-story-btn"><i class="bi bi-x-lg"></i></button>
+
+        <div class="story-text">
+            <p class="mb-0 fw-bold">Şu anda yeni bir yapay zeka projesi kodluyorum! ☕💻</p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .transform-hover {
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        will-change: transform, box-shadow;
+        backface-visibility: hidden;
+    }
+
+    .transform-hover:hover {
+        transform: translateY(-8px) scale(1.01);
+        box-shadow: 0 15px 30px rgba(13, 202, 240, 0.15) !important;
+        border-color: #0dcaf0 !important;
+    }
+
+    .social-icon {
+        transition: transform 0.3s ease, color 0.3s ease;
+        display: inline-block;
+        text-decoration: none !important;
+        outline: none !important;
+    }
+
+    .social-icon:hover {
+        transform: translateY(-5px);
+        color: inherit;
+    }
+
+    .fa-github:hover { color: #6e5494 !important; }
+    .fa-linkedin:hover { color: #0077b5 !important; }
+    .fa-x-twitter:hover { color: #ffffff !important; }
+
+    .feature {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .feature i {
+        line-height: 0;
+        display: inline-block;
+    }
+
+    /* STORY MODAL CSS */
+    .story-ring {
+        transition: transform 0.3s ease, filter 0.3s ease;
+    }
+    .story-ring:hover {
+        transform: scale(1.03);
+        filter: brightness(1.2);
+    }
+
+    .story-modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(8px);
+    }
+
+    .story-content {
+        position: relative;
+        margin: 2% auto;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        max-width: 400px;
+        height: 85vh;
+        max-height: 750px;
+        background-color: #111;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 0 40px rgba(13, 202, 240, 0.4);
+    }
+
+    .story-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .story-progress-container {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        right: 15px;
+        height: 4px;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+        z-index: 10;
+        overflow: hidden;
+    }
+
+    .story-progress-bar {
+        height: 100%;
+        width: 0%;
+        background-color: #fff;
+        border-radius: 4px;
+    }
+
+    .close-story-btn {
+        position: absolute;
+        top: 25px;
+        right: 15px;
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 26px;
+        cursor: pointer;
+        z-index: 10;
+        text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+    }
+
+    .story-text {
+        position: absolute;
+        bottom: 30px;
+        left: 20px;
+        right: 20px;
+        text-align: center;
+        color: white;
+        text-shadow: 0 2px 5px rgba(0,0,0,0.9);
+        z-index: 10;
+    }
+</style>
+
+<!-- STORY JAVASCRIPT -->
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const profileImg = document.getElementById('profileImage');
+        const storyModal = document.getElementById('storyModal');
+        const closeStoryBtn = document.getElementById('closeStory');
+        const progressBar = document.getElementById('storyProgressBar');
+        
+        let progressInterval;
+        const storyDuration = 5000; // 5 Saniye
+
+        profileImg.addEventListener('click', function() {
+            storyModal.style.display = "block";
+            progressBar.style.width = "0%";
+            document.body.style.overflow = "hidden";
+            
+            let width = 0;
+            const intervalTime = 50; 
+            const step = (100 / (storyDuration / intervalTime));
+
+            progressInterval = setInterval(() => {
+                width += step;
+                progressBar.style.width = width + "%";
+                
+                if (width >= 100) {
+                    closeStory();
+                }
+            }, intervalTime);
+        });
+
+        function closeStory() {
+            storyModal.style.display = "none";
+            clearInterval(progressInterval);
+            document.body.style.overflow = "auto";
+        }
+
+        closeStoryBtn.addEventListener('click', closeStory);
+        
+        window.addEventListener('click', function(e) {
+            if (e.target === storyModal) {
+                closeStory();
+            }
+        });
+    });
+</script>
